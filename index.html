@@ -541,6 +541,58 @@ footer strong { color: var(--gold-light); }
 /* section background alternating helper */
 section:nth-of-type(odd) { background: transparent; }
 
+/* ===== 신규 기능 CSS ===== */
+/* Tag: 어린이 친화 */
+.tag-child { background: #FFF3E0; color: #E65100; }
+
+/* 맨 위로 버튼 */
+#scroll-top-btn {
+  position: fixed; bottom: 28px; right: 22px; z-index: 900;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--teal); color: white;
+  border: none; cursor: pointer; font-size: 1.3rem; font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0,151,167,0.45);
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+#scroll-top-btn.visible { opacity: 1; visibility: visible; }
+#scroll-top-btn:hover { transform: translateY(-3px); background: var(--teal-dark); }
+
+/* D-Day 카운터 */
+#dday-counter {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,167,38,0.2); border: 1px solid rgba(255,167,38,0.4);
+  color: var(--gold-light); padding: 6px 20px; border-radius: 50px;
+  font-size: 0.9rem; font-weight: 700; margin-top: 14px;
+  animation: ddayPulse 2s ease-in-out infinite;
+}
+@keyframes ddayPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255,167,38,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(255,167,38,0); }
+}
+
+/* 가족 메시지 */
+.family-msg-wrap {
+  background: linear-gradient(135deg, #FFFDE7 0%, #FFF8E1 100%);
+  border-bottom: 2px solid #FFE082;
+}
+.family-msg {
+  max-width: var(--max-w); margin: 0 auto;
+  padding: 26px 24px 22px;
+  display: flex; align-items: center; gap: 20px;
+}
+.family-msg-icon { font-size: 2.8rem; flex-shrink: 0; }
+.family-msg-text h3 { font-size: 1.05rem; font-weight: 800; color: #B45309; margin-bottom: 6px; }
+.family-msg-text p { font-size: 0.88rem; color: #92400E; line-height: 1.75; }
+@media (max-width: 480px) {
+  .family-msg { flex-direction: column; text-align: center; }
+}
+
+/* 스크롤 스파이 active */
+.nav-links a.active { background: rgba(255,255,255,0.2); color: white; }
+.mobile-menu-grid a.active { background: rgba(0,151,167,0.45); color: white; border-color: var(--teal-light); }
+
 </style>
 </head>
 <body>
@@ -627,12 +679,28 @@ section:nth-of-type(odd) { background: transparent; }
     <div class="hero-note">
       💡 비행 약 <strong style="color:var(--gold-light)">5시간 50분</strong> &nbsp;·&nbsp; 시차: 한국 -2시간 (UTC+7) &nbsp;·&nbsp; 환율: 1만 VND ≈ 560원
     </div>
+    <div id="dday-counter">⏳ 계산 중...</div>
   </div>
   <!-- Wave divider -->
   <div class="hero-wave">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 64" preserveAspectRatio="none">
       <path fill="#F0F4F8" d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z"/>
     </svg>
+  </div>
+</div>
+
+<!-- ===== 가족 메시지 ===== -->
+<div class="family-msg-wrap">
+  <div class="family-msg">
+    <div class="family-msg-icon">👨‍👩‍👧‍👦</div>
+    <div class="family-msg-text">
+      <h3>🙏 부모님 만수무강 기원 · 온 가족 함께하는 특별한 여행</h3>
+      <p>
+        할아버지·할머니·이모·삼촌·사촌들까지 — 11명이 함께 만드는 소중한 추억.<br>
+        어른들의 지혜와 아이들의 웃음이 어우러지는 푸꾸옥의 푸른 바다에서,<br>
+        온 가족의 건강과 행복을 빕니다. 사랑합니다. 💛
+      </p>
+    </div>
   </div>
 </div>
 
@@ -788,6 +856,27 @@ section:nth-of-type(odd) { background: transparent; }
         <li>비자: 한국인 45일 무비자 (2023년~)</li>
       </ul>
     </div>
+  </div>
+
+  <!-- 그랩 이동 가이드 -->
+  <div class="info-box" style="margin-top:16px;">
+    <h4>🚗 그랩(Grab) 주요 경로 요금 가이드</h4>
+    <p style="font-size:0.78rem;color:var(--text-light);margin-bottom:10px;">베스트웨스턴 프리미어 소나시 기준 편도 · 11명이면 GrabCar XL 2대 나눠 탑승</p>
+    <div class="table-wrap">
+      <table class="compare-table">
+        <thead><tr>
+          <th>목적지</th><th>소요시간</th><th>편도 요금</th><th>왕복(2대 합산)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td>야시장 (Dinh Cậu Night Market)</td><td>약 15분</td><td>~50,000 VND (≈2,700원)</td><td>~200,000 VND</td></tr>
+          <tr><td>그랜드월드 (Grand World)</td><td>약 25분</td><td>~120,000 VND (≈6,500원)</td><td>~480,000 VND</td></tr>
+          <tr><td>선월드 케이블카 (Hon Thom)</td><td>약 35분</td><td>~180,000 VND (≈9,700원)</td><td>~720,000 VND</td></tr>
+          <tr><td>바이사오 해변 (Bãi Sao)</td><td>약 30분</td><td>~150,000 VND (≈8,100원)</td><td>~600,000 VND</td></tr>
+          <tr><td>공항 (Phú Quốc International)</td><td>약 20분</td><td>~80,000 VND (≈4,300원)</td><td>~320,000 VND</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tip-box" style="margin-top:10px;">💡 <strong>11명 이동 팁</strong>: GrabCar XL(7인승) 2대 나눠 탑승 · 앱에서 동시에 호출 · 오전·저녁 피크 시간대는 서지(할증) 요금 20~40% 추가 가능 · Grab 앱 미리 카드 등록 필수</div>
   </div>
 
   <div class="two-col">
@@ -1004,7 +1093,7 @@ section:nth-of-type(odd) { background: transparent; }
           <div class="slot-name">🎢 빈원더스 (VinWonders) — 선택</div>
           <div class="slot-detail">대형 워터파크+놀이공원 · 입장료 있음 · 어린이 강력추천 · 4~5시간 소요</div>
           <div class="slot-tags">
-            <span class="tag tag-tour">관광</span><span class="tag tag-rec">어린이◎</span>
+            <span class="tag tag-tour">관광</span><span class="tag tag-child">👶 아이OK</span>
           </div>
           <div class="tip-box" style="margin-top:6px;">💡 성인 약 98만 VND(~53,000원), 아동 약 70만 VND · 온라인 사전 구매 할인</div>
         </div>
@@ -1211,14 +1300,14 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">그랜드월드 푸꾸옥</div>
           <div class="card-name-vn">Grand World Phú Quốc</div>
-          <div style="margin-top:4px;"><span class="tag tag-tour">관광</span><span class="tag tag-shop">쇼핑</span><span class="tag tag-rec">무료입장</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-tour">관광</span><span class="tag tag-shop">쇼핑</span><span class="tag tag-rec">무료입장</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><span class="key">영업시간: </span><span class="val">08:00–22:00</span></div>
         <div class="info-item"><span class="key">입장료: </span><span class="val">무료</span></div>
         <div class="info-item"><span class="key">호텔에서: </span><span class="val">약 35분/30km</span></div>
-        <div class="info-item"><span class="key">그랩비용: </span><span class="val">~150,000원</span></div>
+        <div class="info-item"><span class="key">그랩비용: </span><span class="val">~120,000 VND (≈6,500원)</span></div>
       </div>
       <p style="font-size:0.82rem; color:var(--text-light);">베네치안 운하 스타일의 대형 복합 리조트. 유럽풍 건물들 사이 운하 관광선 · 각종 레스토랑/카페 · 쇼핑 · 공연 · 어린이도 즐길 거리 많음.</p>
       <a class="map-btn" href="https://maps.google.com/?q=Grand+World+Phu+Quoc" target="_blank">📍 Google Maps</a>
@@ -1230,16 +1319,17 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">빈원더스 푸꾸옥</div>
           <div class="card-name-vn">VinWonders Phú Quốc</div>
-          <div style="margin-top:4px;"><span class="tag tag-tour">놀이공원</span><span class="tag tag-rec">어린이◎</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-tour">놀이공원</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><span class="key">영업시간: </span><span class="val">09:00–21:00</span></div>
-        <div class="info-item"><span class="key">성인: </span><span class="val">~980,000원</span></div>
+        <div class="info-item"><span class="key">성인: </span><span class="val">~980,000 VND (≈53,000원)</span></div>
         <div class="info-item"><span class="key">아동(1m이하): </span><span class="val">무료</span></div>
-        <div class="info-item"><span class="key">아동(1~1.4m): </span><span class="val">~700,000원</span></div>
+        <div class="info-item"><span class="key">아동(1~1.4m): </span><span class="val">~700,000 VND (≈37,800원)</span></div>
       </div>
       <p style="font-size:0.82rem; color:var(--text-light);">워터파크+놀이기구+수족관+공연이 통합된 대형 테마파크. 어린이 동반 가족 필수 방문지. 반나절~하루 소요.</p>
+      <div class="alert alert-warn" style="margin-top:6px;font-size:0.78rem;">⚠️ <strong>키 제한 안내</strong>: 100cm 이하 무료 · 100~140cm 할인가 · 일부 고속 놀이기구는 키 120cm 이상만 탑승 가능 · 안전요원 기준 현장 확인 필수</div>
       <div class="tip-box">💡 온라인 사전 구매 시 10~15% 할인. 공식 웹사이트에서 예약.</div>
       <a class="map-btn" href="https://maps.google.com/?q=VinWonders+Phu+Quoc" target="_blank">📍 Google Maps</a>
     </div>
@@ -1250,12 +1340,12 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">빈펄 사파리</div>
           <div class="card-name-vn">Vinpearl Safari Phú Quốc</div>
-          <div style="margin-top:4px;"><span class="tag tag-tour">동물원</span><span class="tag tag-rec">어린이◎</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-tour">동물원</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><span class="key">영업시간: </span><span class="val">08:30–16:00</span></div>
-        <div class="info-item"><span class="key">성인: </span><span class="val">~820,000원</span></div>
+        <div class="info-item"><span class="key">성인: </span><span class="val">~820,000 VND (≈44,300원)</span></div>
         <div class="info-item"><span class="key">아동(1m이하): </span><span class="val">무료</span></div>
         <div class="info-item"><span class="key">호텔에서: </span><span class="val">약 40분</span></div>
       </div>
@@ -1270,14 +1360,14 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">바이사오 (스타피쉬비치)</div>
           <div class="card-name-vn">Bãi Sao / Starfish Beach</div>
-          <div style="margin-top:4px;"><span class="tag tag-beach">해변</span><span class="tag tag-rec">추천</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-beach">해변</span><span class="tag tag-rec">추천</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><span class="key">입장료: </span><span class="val">무료</span></div>
-        <div class="info-item"><span class="key">선베드: </span><span class="val">~50,000원</span></div>
+        <div class="info-item"><span class="key">선베드: </span><span class="val">~50,000 VND (≈2,700원)</span></div>
         <div class="info-item"><span class="key">호텔에서: </span><span class="val">약 45분/35km</span></div>
-        <div class="info-item"><span class="key">그랩비용: </span><span class="val">~200,000원</span></div>
+        <div class="info-item"><span class="key">그랩비용: </span><span class="val">~150,000 VND (≈8,100원)</span></div>
       </div>
       <p style="font-size:0.82rem; color:var(--text-light);">하얀 모래와 맑은 바다. 실제 불가사리를 볼 수 있는 해변. 수심 얕아 아이들 안전. 빈원더스와 함께 북부 코스로 묶기 좋음.</p>
       <a class="map-btn" href="https://maps.google.com/?q=Bai+Sao+Beach+Phu+Quoc" target="_blank">📍 Google Maps</a>
@@ -1353,7 +1443,7 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">롱비치 (호텔 앞 해변)</div>
           <div class="card-name-vn">Bãi Trường (Long Beach)</div>
-          <div style="margin-top:4px;"><span class="tag tag-beach">해변</span><span class="tag tag-rec">도보접근</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-beach">해변</span><span class="tag tag-rec">도보접근</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
@@ -1397,12 +1487,12 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">선월드 혼텀 케이블카</div>
           <div class="card-name-vn">Sun World Hòn Thơm</div>
-          <div style="margin-top:4px;"><span class="tag tag-tour">관광</span><span class="tag tag-rec">필수</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-tour">관광</span><span class="tag tag-rec">필수</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <div class="info-grid">
         <div class="info-item"><span class="key">영업시간: </span><span class="val">09:00–17:00</span></div>
-        <div class="info-item"><span class="key">성인: </span><span class="val">~750,000원</span></div>
+        <div class="info-item"><span class="key">성인: </span><span class="val">~750,000 VND (≈40,500원)</span></div>
         <div class="info-item"><span class="key">아동(키100cm이하): </span><span class="val">무료</span></div>
         <div class="info-item"><span class="key">호텔에서: </span><span class="val">약 25분</span></div>
       </div>
@@ -1773,7 +1863,7 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">Grand World Food Court</div>
           <div class="card-name-vn">그랜드월드 푸드코트</div>
-          <div style="margin-top:4px;"><span class="tag tag-food">푸드코트</span><span class="tag tag-rec">어린이◎</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-food">푸드코트</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <p style="font-size:0.82rem;color:var(--text-light);">다양한 음식을 한 번에. 에어컨 쾌적. 아이들 입맛에 맞는 음식 찾기 좋음.</p>
@@ -1847,7 +1937,7 @@ section:nth-of-type(odd) { background: transparent; }
         <div>
           <div class="card-name">푸꾸옥 한식당 CHO BBQ</div>
           <div class="card-name-vn">Cho BBQ Korean Restaurant</div>
-          <div style="margin-top:4px;"><span class="tag tag-food">한식</span><span class="tag tag-rec">한국인◎</span></div>
+          <div style="margin-top:4px;"><span class="tag tag-food">한식</span><span class="tag tag-rec">한국인◎</span><span class="tag tag-child">👶 아이OK</span></div>
         </div>
       </div>
       <p style="font-size:0.82rem;color:var(--text-light);">현지 한식 레스토랑. 아이들이 현지 음식 안 먹을 때 대안. 한국어 가능.</p>
@@ -1953,7 +2043,7 @@ section:nth-of-type(odd) { background: transparent; }
       <div class="card-header"><div class="card-icon">🌿</div><div>
         <div class="card-name">씀모이가든 (Xóm Mới Garden)</div>
         <div class="card-name-vn">Xóm Mới Garden Phú Quốc</div>
-        <div style="margin-top:4px;"><span class="tag tag-food">베트남</span><span class="tag tag-rec">분위기◎</span></div>
+        <div style="margin-top:4px;"><span class="tag tag-food">베트남</span><span class="tag tag-rec">분위기◎</span><span class="tag tag-child">👶 아이OK</span></div>
       </div></div>
       <p style="font-size:0.82rem;color:var(--text-light);">정원 분위기 베트남 레스토랑. 야외 테이블, 자연 속 식사. 가족 단체 추천.</p>
       <a class="map-btn" href="https://www.google.com/maps?q=10.195904,103.9677674" target="_blank">📍 지도</a>
@@ -1962,7 +2052,7 @@ section:nth-of-type(odd) { background: transparent; }
       <div class="card-header"><div class="card-icon">🐾</div><div>
         <div class="card-name">MEO Kitchen (메오키친)</div>
         <div class="card-name-vn">고양이 테마 레스토랑</div>
-        <div style="margin-top:4px;"><span class="tag tag-food">베트남</span><span class="tag tag-rec">어린이◎</span></div>
+        <div style="margin-top:4px;"><span class="tag tag-food">베트남</span><span class="tag tag-child">👶 아이OK</span></div>
       </div></div>
       <p style="font-size:0.82rem;color:var(--text-light);">고양이 테마 귀여운 레스토랑. 아이들이 좋아하는 분위기. 베트남 가정식.</p>
       <a class="map-btn" href="https://www.google.com/maps?q=10.1916776,103.9666573" target="_blank">📍 지도</a>
@@ -2947,7 +3037,7 @@ section:nth-of-type(odd) { background: transparent; }
 <!-- ===== 8. 체크리스트 ===== -->
 <section id="checklist">
   <h2 class="section-title">✅ 준비물 체크리스트</h2>
-  <p style="font-size:0.83rem; color:var(--text-light); margin-bottom:16px;">클릭하면 체크됩니다. (새로고침 시 초기화)</p>
+  <p style="font-size:0.83rem; color:var(--text-light); margin-bottom:16px;">클릭하면 체크됩니다. (자동 저장됩니다)</p>
 
   <div class="checklist-section">
     <div class="checklist-title">📄 여권 & 서류</div>
@@ -3265,25 +3355,35 @@ document.addEventListener('click', e => {
   if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
 });
 
-// Accordion toggle
+// Accordion toggle — 섹션 내에서만 닫기 (C1)
 function toggleAccordion(header) {
   const body = header.nextElementSibling;
   const isOpen = body.classList.contains('open');
-  // Close all
-  document.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.accordion-header.open').forEach(h => h.classList.remove('open'));
+  const section = header.closest('section');
+  const scope = section || document;
+  scope.querySelectorAll('.accordion-body.open').forEach(b => b.classList.remove('open'));
+  scope.querySelectorAll('.accordion-header.open').forEach(h => h.classList.remove('open'));
   if (!isOpen) {
     body.classList.add('open');
     header.classList.add('open');
   }
 }
 
-// Checklist — check styling
-document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
-  cb.addEventListener('change', function() {
-    this.parentElement.classList.toggle('checked', this.checked);
+// Checklist — localStorage 저장 (A1)
+(function() {
+  const KEY = 'pq-checklist-2026';
+  const checkboxes = Array.from(document.querySelectorAll('.check-item input[type="checkbox"]'));
+  const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+  checkboxes.forEach((cb, i) => {
+    if (saved[i]) cb.checked = true;
+    if (cb.checked) cb.parentElement.classList.add('checked');
+    cb.addEventListener('change', function() {
+      this.parentElement.classList.toggle('checked', this.checked);
+      const state = checkboxes.map(c => c.checked);
+      localStorage.setItem(KEY, JSON.stringify(state));
+    });
   });
-});
+})();
 
 // Smooth scroll offset for fixed nav
 document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -3296,6 +3396,51 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// 맨 위로 버튼 (A4)
+const scrollTopBtn = document.getElementById('scroll-top-btn');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// D-Day 카운터 (A3)
+(function() {
+  const departure = new Date('2026-04-01T00:00:00');
+  const returnDate = new Date('2026-04-05T23:59:59');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const msPerDay = 86400000;
+  const diffDepart = Math.round((departure - today) / msPerDay);
+  const diffReturn = Math.ceil((returnDate - today) / msPerDay);
+  let text;
+  if (diffDepart > 0) {
+    text = '✈️ D-' + diffDepart + ' 푸꾸옥 출발까지';
+  } else if (diffReturn >= 0) {
+    const dayNum = Math.round((today - departure) / msPerDay) + 1;
+    text = '🌴 Day ' + dayNum + ' in Phú Quốc';
+  } else {
+    text = '✅ 여행 완료! 추억은 영원히 💛';
+  }
+  const el = document.getElementById('dday-counter');
+  if (el) el.textContent = text;
+})();
+
+// 스크롤 스파이 (C2)
+(function() {
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"], .mobile-menu-grid a[href^="#"]');
+  const sections = Array.from(document.querySelectorAll('section[id]'));
+  if (!sections.length || !navLinks.length) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = '#' + entry.target.id;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === id));
+    });
+  }, { rootMargin: '-80px 0px -60% 0px' });
+  sections.forEach(s => observer.observe(s));
+})();
 </script>
+<button id="scroll-top-btn" aria-label="맨 위로">↑</button>
 </body>
 </html>
