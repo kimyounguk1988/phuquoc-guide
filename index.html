@@ -593,6 +593,105 @@ section:nth-of-type(odd) { background: transparent; }
 .nav-links a.active { background: rgba(255,255,255,0.2); color: white; }
 .mobile-menu-grid a.active { background: rgba(0,151,167,0.45); color: white; border-color: var(--teal-light); }
 
+/* ===== 가계부 ===== */
+.ledger-tabs {
+  display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap;
+}
+.ledger-tab {
+  flex: 1; min-width: 80px; padding: 11px 8px; border-radius: 10px;
+  border: 2px solid var(--border); background: var(--bg);
+  font-size: 0.85rem; font-weight: 700; cursor: pointer;
+  color: var(--text-light); transition: all 0.18s; font-family: inherit;
+}
+.ledger-tab.active { background: var(--teal); color: white; border-color: var(--teal); box-shadow: 0 4px 12px rgba(0,151,167,0.3); }
+.ledger-tab:hover:not(.active) { border-color: var(--teal-light); color: var(--teal-dark); }
+
+.ledger-panel { display: none; }
+.ledger-panel.active { display: block; }
+
+.ledger-grand {
+  background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+  border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  box-shadow: var(--shadow);
+}
+.ledger-grand .g-left .g-label { font-size: 0.78rem; color: rgba(255,255,255,0.75); margin-bottom: 4px; }
+.ledger-grand .g-vnd { font-size: 1.15rem; font-weight: 900; color: white; }
+.ledger-grand .g-krw { font-size: 0.8rem; color: rgba(255,255,255,0.78); margin-top: 2px; }
+.ledger-grand .g-right { text-align: right; font-size: 0.75rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+.ledger-summary {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-bottom: 18px;
+}
+.l-sum-card {
+  background: white; border-radius: 10px; padding: 10px 13px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+}
+.l-sum-card.l-total {
+  background: linear-gradient(135deg, var(--teal-dark), var(--teal)); color: white;
+}
+.l-sum-card .sc-label { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 3px; }
+.l-sum-card.l-total .sc-label { color: rgba(255,255,255,0.72); }
+.l-sum-card .sc-vnd { font-size: 0.88rem; font-weight: 700; color: var(--teal-dark); }
+.l-sum-card.l-total .sc-vnd { color: white; font-size: 1rem; }
+.l-sum-card .sc-krw { font-size: 0.7rem; color: var(--text-light); margin-top: 1px; }
+.l-sum-card.l-total .sc-krw { color: rgba(255,255,255,0.75); }
+
+.ledger-form {
+  background: white; border-radius: var(--radius); padding: 16px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-card); margin-bottom: 16px;
+}
+.ledger-form h4 { font-size: 0.92rem; font-weight: 700; color: var(--teal-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+.lf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+.lf-field { display: flex; flex-direction: column; gap: 3px; }
+.lf-field label { font-size: 0.7rem; color: var(--text-muted); font-weight: 600; letter-spacing: 0.02em; }
+.lf-field input, .lf-field select {
+  padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.83rem; font-family: inherit; color: var(--text);
+  background: var(--bg); transition: border 0.15s; width: 100%;
+}
+.lf-field input:focus, .lf-field select:focus { outline: none; border-color: var(--teal-light); background: white; }
+.lf-save {
+  width: 100%; padding: 12px; background: var(--teal); color: white;
+  border: none; border-radius: 10px; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; font-family: inherit; transition: background 0.2s;
+  margin-top: 10px; letter-spacing: 0.01em;
+}
+.lf-save:hover { background: var(--teal-dark); }
+.lf-save:active { transform: scale(0.98); }
+
+.ledger-entries { display: flex; flex-direction: column; gap: 6px; }
+.l-entry {
+  background: white; border-radius: 10px; padding: 10px 13px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  display: flex; align-items: center; gap: 10px;
+  transition: box-shadow 0.15s;
+}
+.l-entry:hover { box-shadow: var(--shadow); }
+.l-cat-badge {
+  font-size: 0.68rem; font-weight: 700; padding: 3px 9px;
+  border-radius: 50px; white-space: nowrap; flex-shrink: 0;
+}
+.l-main { flex: 1; min-width: 0; }
+.l-desc { font-size: 0.85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.l-meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 1px; }
+.l-amt { text-align: right; flex-shrink: 0; }
+.l-vnd { font-size: 0.83rem; font-weight: 700; color: var(--teal-dark); }
+.l-krw { font-size: 0.7rem; color: var(--text-muted); }
+.l-del {
+  background: none; border: none; cursor: pointer; font-size: 1rem;
+  color: var(--text-muted); padding: 4px 6px; border-radius: 6px;
+  transition: all 0.15s; flex-shrink: 0; font-family: inherit;
+}
+.l-del:hover { background: #FEE2E2; color: #DC2626; }
+.l-empty { text-align: center; padding: 36px 20px; color: var(--text-muted); font-size: 0.85rem; }
+
+@media (max-width: 600px) {
+  .lf-grid { grid-template-columns: 1fr; }
+  .ledger-grand { flex-direction: column; gap: 8px; text-align: center; }
+  .ledger-grand .g-right { text-align: center; }
+}
+
 </style>
 </head>
 <body>
@@ -618,6 +717,7 @@ section:nth-of-type(odd) { background: transparent; }
       <a href="#checklist">체크리스트</a>
       <a href="#tips">팁</a>
       <a href="#emergency">긴급연락</a>
+      <a href="#ledger" style="background:rgba(255,167,38,0.2);color:var(--gold-light);border:1px solid rgba(255,167,38,0.3);">💰가계부</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="메뉴">
       <span></span><span></span><span></span>
@@ -644,6 +744,7 @@ section:nth-of-type(odd) { background: transparent; }
     <a href="#checklist"   onclick="closeMenu()"><span class="menu-icon">✅</span>체크리스트</a>
     <a href="#tips"        onclick="closeMenu()"><span class="menu-icon">💡</span>팁</a>
     <a href="#emergency"   onclick="closeMenu()"><span class="menu-icon">🚨</span>긴급연락</a>
+    <a href="#ledger"      onclick="closeMenu()" style="background:rgba(255,167,38,0.15);border-color:rgba(255,167,38,0.3);color:var(--gold-light);"><span class="menu-icon">💰</span>가계부</a>
   </div>
 </div>
 
@@ -3330,6 +3431,43 @@ section:nth-of-type(odd) { background: transparent; }
   </div>
 </section>
 
+<!-- ===== 가계부 ===== -->
+<div class="section-wrap">
+<section id="ledger">
+  <div class="section-title-bar">
+    <h2 class="section-title">💰 여행 가계부</h2>
+    <span class="section-title-sub">그룹별 지출 관리 · 자동저장</span>
+  </div>
+
+  <!-- 전체 합계 -->
+  <div class="ledger-grand">
+    <div class="g-left">
+      <div class="g-label">전체 4그룹 합계 (공통 포함)</div>
+      <div class="g-vnd" id="gt-vnd">0 VND</div>
+      <div class="g-krw" id="gt-krw">≈ 0원</div>
+    </div>
+    <div class="g-right">
+      1,000 VND ≈ 54원 기준<br>
+      저장 후 자동 반영됩니다
+    </div>
+  </div>
+
+  <!-- 그룹 탭 -->
+  <div class="ledger-tabs">
+    <button class="ledger-tab active" data-group="0">🏠 의정부</button>
+    <button class="ledger-tab" data-group="1">🌿 장흥</button>
+    <button class="ledger-tab" data-group="2">🌸 옥정</button>
+    <button class="ledger-tab" data-group="3">👨‍👩‍👧‍👦 공통</button>
+  </div>
+
+  <!-- 그룹별 패널 -->
+  <div class="ledger-panel active" id="lp-0"></div>
+  <div class="ledger-panel" id="lp-1"></div>
+  <div class="ledger-panel" id="lp-2"></div>
+  <div class="ledger-panel" id="lp-3"></div>
+</section>
+</div>
+
 </main>
 
 <footer>
@@ -3424,6 +3562,142 @@ scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior:
   }
   const el = document.getElementById('dday-counter');
   if (el) el.textContent = text;
+})();
+
+// 가계부 (Ledger)
+(function() {
+  const LEDGER_KEY = 'pq-ledger-2026';
+  const RATE = 54; // 1,000 VND = 54원
+  const GROUPS = ['🏠 의정부', '🌿 장흥', '🌸 옥정', '👨‍👩‍👧‍👦 공통'];
+  const CATS = [
+    { id:'flight', label:'✈️ 항공권',        bg:'#EBF4FF', fg:'#1565C0' },
+    { id:'trans',  label:'🚗 교통(그랩/택시)', bg:'#EDFAF1', fg:'#1B5E20' },
+    { id:'hotel',  label:'🏨 숙박',           bg:'#F3F0FF', fg:'#5E35B1' },
+    { id:'food',   label:'🍽️ 음식',           bg:'#FFF4E6', fg:'#D4500A' },
+    { id:'tour',   label:'🎢 관광/입장료',    bg:'#E0F9FC', fg:'#006064' },
+    { id:'shop',   label:'🛍️ 쇼핑',           bg:'#FDF0F7', fg:'#7B1FA2' },
+    { id:'med',    label:'💊 의약품',         bg:'#FFF3E0', fg:'#E65100' },
+    { id:'misc',   label:'📦 기타',           bg:'#F5F5F5', fg:'#424242' },
+  ];
+
+  let data = (() => {
+    try { return JSON.parse(localStorage.getItem(LEDGER_KEY)) || { groups:[[],[],[],[]] }; }
+    catch(e) { return { groups:[[],[],[],[]] }; }
+  })();
+  if (!Array.isArray(data.groups) || data.groups.length < 4)
+    data = { groups:[[],[],[],[]] };
+
+  function save() { localStorage.setItem(LEDGER_KEY, JSON.stringify(data)); }
+  function vndToKrw(v) { return Math.round(v / 1000 * RATE); }
+  function fmtV(v) { return (v||0).toLocaleString() + ' VND'; }
+  function fmtK(v) { return '≈ ' + vndToKrw(v||0).toLocaleString() + '원'; }
+  function getCat(id) { return CATS.find(c => c.id === id) || CATS[CATS.length-1]; }
+  function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function grpTotal(gi) { return data.groups[gi].reduce((s,e)=>s+(e.vnd||0),0); }
+
+  function updateGrand() {
+    const total = data.groups.reduce((s,g)=>s+g.reduce((ss,e)=>ss+(e.vnd||0),0),0);
+    document.getElementById('gt-vnd').textContent = fmtV(total);
+    document.getElementById('gt-krw').textContent = fmtK(total);
+  }
+
+  function renderPanel(gi) {
+    const panel = document.getElementById('lp-'+gi);
+    const entries = data.groups[gi];
+    const total = grpTotal(gi);
+
+    // 요약 카드
+    const catMap = {};
+    entries.forEach(e => { catMap[e.cat] = (catMap[e.cat]||0) + (e.vnd||0); });
+    let sumHtml = `<div class="ledger-summary">
+      <div class="l-sum-card l-total">
+        <div class="sc-label">${GROUPS[gi]} 합계</div>
+        <div class="sc-vnd">${fmtV(total)}</div>
+        <div class="sc-krw">${fmtK(total)}</div>
+      </div>`;
+    CATS.forEach(cat => {
+      const v = catMap[cat.id]||0;
+      if (!v) return;
+      sumHtml += `<div class="l-sum-card">
+        <div class="sc-label">${cat.label}</div>
+        <div class="sc-vnd" style="color:${cat.fg}">${fmtV(v)}</div>
+        <div class="sc-krw">${fmtK(v)}</div>
+      </div>`;
+    });
+    sumHtml += '</div>';
+
+    // 입력 폼
+    const catOpts = CATS.map(c=>`<option value="${c.id}">${c.label}</option>`).join('');
+    const today = new Date().toISOString().slice(0,10);
+    const formHtml = `<div class="ledger-form">
+      <h4>➕ 지출 추가</h4>
+      <div class="lf-grid">
+        <div class="lf-field"><label>날짜</label><input type="date" id="lf-date-${gi}" value="${today}"></div>
+        <div class="lf-field"><label>카테고리</label><select id="lf-cat-${gi}">${catOpts}</select></div>
+        <div class="lf-field"><label>내용 *</label><input type="text" id="lf-desc-${gi}" placeholder="예: 빈원더스 입장권 (성인3)"></div>
+        <div class="lf-field"><label>금액 VND *</label><input type="number" id="lf-vnd-${gi}" placeholder="예: 2940000" min="0" step="1000"></div>
+      </div>
+      <div class="lf-field"><label>메모 (선택)</label><input type="text" id="lf-note-${gi}" placeholder="예: 온라인 예약 15% 할인 적용"></div>
+      <button class="lf-save" onclick="ldAdd(${gi})">💾 저장하기</button>
+    </div>`;
+
+    // 내역 목록
+    let listHtml = '<div class="ledger-entries">';
+    if (!entries.length) {
+      listHtml += '<div class="l-empty">📭 아직 입력된 지출이 없습니다.<br>위 양식을 작성하고 저장버튼을 눌러주세요.</div>';
+    } else {
+      [...entries].sort((a,b)=>a.date>b.date?1:-1).forEach(e => {
+        const cat = getCat(e.cat);
+        listHtml += `<div class="l-entry">
+          <span class="l-cat-badge" style="background:${cat.bg};color:${cat.fg}">${cat.label}</span>
+          <div class="l-main">
+            <div class="l-desc">${esc(e.desc)}</div>
+            <div class="l-meta">${esc(e.date)}${e.note?' · '+esc(e.note):''}</div>
+          </div>
+          <div class="l-amt">
+            <div class="l-vnd">${fmtV(e.vnd)}</div>
+            <div class="l-krw">${fmtK(e.vnd)}</div>
+          </div>
+          <button class="l-del" onclick="ldDel(${gi},'${esc(e.id)}')" title="삭제">✕</button>
+        </div>`;
+      });
+    }
+    listHtml += '</div>';
+
+    panel.innerHTML = sumHtml + formHtml + listHtml;
+    updateGrand();
+  }
+
+  window.ldAdd = function(gi) {
+    const date = document.getElementById('lf-date-'+gi).value || new Date().toISOString().slice(0,10);
+    const cat  = document.getElementById('lf-cat-'+gi).value;
+    const desc = document.getElementById('lf-desc-'+gi).value.trim();
+    const vnd  = parseInt(document.getElementById('lf-vnd-'+gi).value)||0;
+    const note = document.getElementById('lf-note-'+gi).value.trim();
+    if (!desc) { document.getElementById('lf-desc-'+gi).focus(); return; }
+    if (vnd <= 0) { document.getElementById('lf-vnd-'+gi).focus(); return; }
+    data.groups[gi].push({ id: Date.now().toString(36)+Math.random().toString(36).slice(2,5), date, cat, desc, vnd, note });
+    save();
+    renderPanel(gi);
+  };
+
+  window.ldDel = function(gi, id) {
+    data.groups[gi] = data.groups[gi].filter(e => e.id !== id);
+    save();
+    renderPanel(gi);
+  };
+
+  // 탭 전환
+  document.querySelectorAll('.ledger-tab').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.ledger-tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.ledger-panel').forEach(p=>p.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('lp-'+this.dataset.group).classList.add('active');
+    });
+  });
+
+  for (let i=0; i<4; i++) renderPanel(i);
 })();
 
 // 스크롤 스파이 (C2)
