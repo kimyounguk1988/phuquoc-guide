@@ -3545,10 +3545,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // 맨 위로 버튼 (A4)
 const scrollTopBtn = document.getElementById('scroll-top-btn');
-window.addEventListener('scroll', () => {
-  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-}, { passive: true });
-scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+if (scrollTopBtn) {
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
 
 // D-Day 카운터 (A3)
 (function() {
