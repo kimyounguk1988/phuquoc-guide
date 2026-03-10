@@ -686,6 +686,11 @@ section:nth-of-type(odd) { background: transparent; }
 .l-del:hover { background: #FEE2E2; color: #DC2626; }
 .l-empty { text-align: center; padding: 36px 20px; color: var(--text-muted); font-size: 0.85rem; }
 
+/* 가계부 상호작용 보장 */
+#ledger, #ledger * { pointer-events: auto; }
+.ledger-tab, .lf-save, .l-del { cursor: pointer; -webkit-tap-highlight-color: rgba(0,151,167,0.2); }
+.lf-field input, .lf-field select { -webkit-user-select: auto; user-select: auto; }
+
 @media (max-width: 600px) {
   .lf-grid { grid-template-columns: 1fr; }
   .ledger-grand { flex-direction: column; gap: 8px; text-align: center; }
@@ -806,6 +811,43 @@ section:nth-of-type(odd) { background: transparent; }
 </div>
 
 <main>
+
+<!-- ===== 가계부 ===== -->
+<div class="section-wrap" style="position:relative; z-index:2;">
+<section id="ledger">
+  <div class="section-title-bar">
+    <h2 class="section-title">💰 여행 가계부</h2>
+    <span class="section-title-sub">그룹별 지출 관리 · 자동저장</span>
+  </div>
+
+  <!-- 전체 합계 -->
+  <div class="ledger-grand">
+    <div class="g-left">
+      <div class="g-label">전체 4그룹 합계 (공통 포함)</div>
+      <div class="g-vnd" id="gt-vnd">0 VND</div>
+      <div class="g-krw" id="gt-krw">≈ 0원</div>
+    </div>
+    <div class="g-right">
+      1,000 VND ≈ 54원 기준<br>
+      저장 후 자동 반영됩니다
+    </div>
+  </div>
+
+  <!-- 그룹 탭 -->
+  <div class="ledger-tabs">
+    <button class="ledger-tab active" data-group="0">🏠 의정부</button>
+    <button class="ledger-tab" data-group="1">🌿 장흥</button>
+    <button class="ledger-tab" data-group="2">🌸 옥정</button>
+    <button class="ledger-tab" data-group="3">👨‍👩‍👧‍👦 공통</button>
+  </div>
+
+  <!-- 그룹별 패널 -->
+  <div class="ledger-panel active" id="lp-0"></div>
+  <div class="ledger-panel" id="lp-1"></div>
+  <div class="ledger-panel" id="lp-2"></div>
+  <div class="ledger-panel" id="lp-3"></div>
+</section>
+</div>
 
 <!-- ===== 지도 ===== -->
 <section id="map">
@@ -3431,42 +3473,6 @@ section:nth-of-type(odd) { background: transparent; }
   </div>
 </section>
 
-<!-- ===== 가계부 ===== -->
-<div class="section-wrap">
-<section id="ledger">
-  <div class="section-title-bar">
-    <h2 class="section-title">💰 여행 가계부</h2>
-    <span class="section-title-sub">그룹별 지출 관리 · 자동저장</span>
-  </div>
-
-  <!-- 전체 합계 -->
-  <div class="ledger-grand">
-    <div class="g-left">
-      <div class="g-label">전체 4그룹 합계 (공통 포함)</div>
-      <div class="g-vnd" id="gt-vnd">0 VND</div>
-      <div class="g-krw" id="gt-krw">≈ 0원</div>
-    </div>
-    <div class="g-right">
-      1,000 VND ≈ 54원 기준<br>
-      저장 후 자동 반영됩니다
-    </div>
-  </div>
-
-  <!-- 그룹 탭 -->
-  <div class="ledger-tabs">
-    <button class="ledger-tab active" data-group="0">🏠 의정부</button>
-    <button class="ledger-tab" data-group="1">🌿 장흥</button>
-    <button class="ledger-tab" data-group="2">🌸 옥정</button>
-    <button class="ledger-tab" data-group="3">👨‍👩‍👧‍👦 공통</button>
-  </div>
-
-  <!-- 그룹별 패널 -->
-  <div class="ledger-panel active" id="lp-0"></div>
-  <div class="ledger-panel" id="lp-1"></div>
-  <div class="ledger-panel" id="lp-2"></div>
-  <div class="ledger-panel" id="lp-3"></div>
-</section>
-</div>
 
 </main>
 
@@ -3690,14 +3696,18 @@ scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior:
   // 탭 전환
   document.querySelectorAll('.ledger-tab').forEach(btn => {
     btn.addEventListener('click', function() {
+      const gi = parseInt(this.dataset.group);
       document.querySelectorAll('.ledger-tab').forEach(b=>b.classList.remove('active'));
       document.querySelectorAll('.ledger-panel').forEach(p=>p.classList.remove('active'));
       this.classList.add('active');
-      document.getElementById('lp-'+this.dataset.group).classList.add('active');
+      const panel = document.getElementById('lp-'+gi);
+      panel.classList.add('active');
+      renderPanel(gi);
     });
   });
 
-  for (let i=0; i<4; i++) renderPanel(i);
+  // 초기 렌더 — 활성 패널(0번)만 먼저, 나머지는 탭 클릭 시 렌더
+  renderPanel(0);
 })();
 
 // 스크롤 스파이 (C2)
