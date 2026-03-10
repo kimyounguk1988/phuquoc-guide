@@ -79,6 +79,65 @@ body {
 }
 .nav-links a:hover { background: rgba(255,255,255,0.15); color: white; }
 
+/* ===== 햄버거 버튼 (모바일 전용) ===== */
+.hamburger {
+  display: none;
+  flex-direction: column; justify-content: center; align-items: center;
+  gap: 5px; width: 40px; height: 40px; cursor: pointer;
+  background: rgba(255,255,255,0.12); border-radius: 10px;
+  border: none; flex-shrink: 0; margin-left: auto;
+  transition: background 0.2s;
+}
+.hamburger:hover { background: rgba(255,255,255,0.22); }
+.hamburger span {
+  display: block; width: 20px; height: 2px;
+  background: white; border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== 모바일 드롭다운 메뉴 ===== */
+#mobile-menu {
+  display: none;
+  position: fixed; top: var(--nav-h); left: 0; right: 0;
+  background: rgba(0,50,54,0.97);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  z-index: 999; padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  animation: slideDown 0.22s ease;
+}
+#mobile-menu.open { display: block; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.mobile-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.mobile-menu-grid a {
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  padding: 10px 6px; border-radius: 10px; font-size: 0.78rem; font-weight: 600;
+  text-align: center; background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.18s; display: flex; flex-direction: column;
+  align-items: center; gap: 3px; line-height: 1.2;
+}
+.mobile-menu-grid a:hover, .mobile-menu-grid a:active {
+  background: rgba(0,151,167,0.4); color: white;
+  border-color: var(--teal-light);
+}
+.mobile-menu-grid a .menu-icon { font-size: 1.2rem; }
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+
 /* ===== MAIN ===== */
 main { margin-top: var(--nav-h); }
 
@@ -471,7 +530,7 @@ section:nth-of-type(odd) { background: transparent; }
 <!-- ===== TOP NAV ===== -->
 <nav id="top-nav">
   <div class="nav-inner">
-    <div class="nav-brand">🌴 <span>김영욱의 푸꾸옥</span> 가이드</div>
+    <div class="nav-brand"><span class="brand-icon">🌴</span> <span>김영욱의 푸꾸옥</span> 가이드</div>
     <div class="nav-links">
       <a href="#map">지도</a>
       <a href="#airport">공항출발</a>
@@ -490,8 +549,33 @@ section:nth-of-type(odd) { background: transparent; }
       <a href="#tips">팁</a>
       <a href="#emergency">긴급연락</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- ===== 모바일 전체 메뉴 ===== -->
+<div id="mobile-menu">
+  <div class="mobile-menu-grid">
+    <a href="#map"         onclick="closeMenu()"><span class="menu-icon">🗺️</span>지도</a>
+    <a href="#airport"     onclick="closeMenu()"><span class="menu-icon">✈️</span>공항출발</a>
+    <a href="#basics"      onclick="closeMenu()"><span class="menu-icon">ℹ️</span>기본정보</a>
+    <a href="#schedule"    onclick="closeMenu()"><span class="menu-icon">📅</span>일정표</a>
+    <a href="#north"       onclick="closeMenu()"><span class="menu-icon">🏝️</span>북부</a>
+    <a href="#central"     onclick="closeMenu()"><span class="menu-icon">🌆</span>중부</a>
+    <a href="#south"       onclick="closeMenu()"><span class="menu-icon">🌅</span>남부</a>
+    <a href="#food"        onclick="closeMenu()"><span class="menu-icon">🍽️</span>맛집</a>
+    <a href="#spa"         onclick="closeMenu()"><span class="menu-icon">💆</span>스파</a>
+    <a href="#shopping"    onclick="closeMenu()"><span class="menu-icon">🛍️</span>쇼핑</a>
+    <a href="#pharmacy"    onclick="closeMenu()"><span class="menu-icon">💊</span>약국쇼핑</a>
+    <a href="#foodshopping"onclick="closeMenu()"><span class="menu-icon">🛒</span>식품쇼핑</a>
+    <a href="#vietnamese"  onclick="closeMenu()"><span class="menu-icon">🗣️</span>베트남어</a>
+    <a href="#checklist"   onclick="closeMenu()"><span class="menu-icon">✅</span>체크리스트</a>
+    <a href="#tips"        onclick="closeMenu()"><span class="menu-icon">💡</span>팁</a>
+    <a href="#emergency"   onclick="closeMenu()"><span class="menu-icon">🚨</span>긴급연락</a>
+  </div>
+</div>
 
 <!-- ===== HERO ===== -->
 <div id="hero">
@@ -3129,6 +3213,22 @@ section:nth-of-type(odd) { background: transparent; }
 </footer>
 
 <script>
+// 햄버거 메뉴
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+function closeMenu() {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+// 메뉴 외부 클릭 시 닫기
+document.addEventListener('click', e => {
+  if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) closeMenu();
+});
+
 // Accordion toggle
 function toggleAccordion(header) {
   const body = header.nextElementSibling;
