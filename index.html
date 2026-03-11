@@ -722,6 +722,50 @@ section:nth-of-type(odd) { background: transparent; }
 .memo-save:active { transform: scale(0.98); }
 #memo, #memo * { pointer-events: auto; }
 
+/* ===== GIST 동기화 ===== */
+.sync-btn {
+  background: none; border: 1px solid var(--border); border-radius: 8px;
+  padding: 5px 10px; font-size: 0.82rem; cursor: pointer;
+  color: var(--text-muted); transition: all 0.2s; font-family: inherit;
+  white-space: nowrap;
+}
+.sync-btn:hover { border-color: var(--teal-light); color: var(--teal); }
+.sync-btn.connected { border-color: #81C784; color: #2E7D32; background: #F1F8E9; }
+.sync-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+  z-index: 2000; display: flex; align-items: center; justify-content: center;
+}
+.sync-modal {
+  background: white; border-radius: 16px; padding: 24px 24px 20px;
+  width: 92%; max-width: 400px; box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+.sync-modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.sync-modal-header h3 { font-size: 1rem; font-weight: 700; margin: 0; }
+.sync-modal-header button { background: none; border: none; font-size: 1.1rem; cursor: pointer; color: var(--text-muted); padding: 2px 6px; }
+.sync-input {
+  width: 100%; padding: 10px 12px; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 0.85rem; font-family: var(--font);
+  margin-bottom: 8px; box-sizing: border-box;
+}
+.sync-input:focus { outline: none; border-color: var(--teal-light); }
+.sync-status { font-size: 0.8rem; min-height: 18px; margin-bottom: 10px; }
+.sync-ok { color: #2E7D32; } .sync-err { color: #C62828; } .sync-info { color: var(--teal-dark); }
+.sync-row { display: flex; gap: 8px; }
+.sync-connect-btn {
+  flex: 1; padding: 11px; background: var(--teal); color: white;
+  border: none; border-radius: 10px; font-size: 0.88rem; font-weight: 700;
+  cursor: pointer; font-family: inherit; transition: background 0.2s;
+}
+.sync-connect-btn:hover { background: var(--teal-dark); }
+.sync-connect-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.sync-cancel-btn {
+  padding: 11px 16px; background: none; border: 1px solid var(--border);
+  border-radius: 10px; font-size: 0.88rem; cursor: pointer; font-family: inherit;
+}
+.sync-guide { font-size: 0.75rem; color: var(--text-muted); line-height: 1.65; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+.sync-guide a { color: var(--teal); }
+.sync-disconnect { font-size: 0.75rem; color: #C62828; cursor: pointer; text-decoration: underline; margin-top: 8px; display: inline-block; }
+
 </style>
 </head>
 <body>
@@ -750,6 +794,7 @@ section:nth-of-type(odd) { background: transparent; }
       <a href="#ledger" style="background:rgba(255,167,38,0.2);color:var(--gold-light);border:1px solid rgba(255,167,38,0.3);">💰가계부</a>
       <a href="#memo" style="background:rgba(100,181,246,0.2);color:#90CAF9;border:1px solid rgba(100,181,246,0.3);">📝메모장</a>
       <a href="phuquoc-booklet.html" target="_blank" style="background:rgba(0,137,123,0.25);color:#B2DFDB;border:1px solid rgba(0,137,123,0.4);">📖소책자</a>
+      <button class="sync-btn" id="syncNavBtn" onclick="openSyncModal()">☁️ 동기화</button>
     </div>
     <button class="hamburger" id="hamburger" aria-label="메뉴">
       <span></span><span></span><span></span>
@@ -3595,6 +3640,205 @@ section:nth-of-type(odd) { background: transparent; }
 </footer>
 
 <script>
+// ===== GIST 동기화 모듈 =====
+const GistSync = (function() {
+  const TOKEN_KEY = 'pq_gh_token';
+  const GIST_ID_KEY = 'pq_gist_id';
+  const FILENAME = 'phuquoc-data.json';
+  const API = 'https://api.github.com';
+
+  function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+  function getGistId() { return localStorage.getItem(GIST_ID_KEY) || ''; }
+  function isConnected() { return !!(getToken() && getGistId()); }
+
+  function headers(token) {
+    return { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+  }
+
+  async function findGist(token) {
+    const res = await fetch(API + '/gists?per_page=100', { headers: headers(token) });
+    if (!res.ok) throw new Error('인증 실패 (' + res.status + ')');
+    const list = await res.json();
+    const found = list.find(g => g.files && g.files[FILENAME]);
+    return found ? found.id : null;
+  }
+
+  async function load() {
+    const token = getToken(), gistId = getGistId();
+    if (!token || !gistId) return null;
+    try {
+      const res = await fetch(API + '/gists/' + gistId, { headers: headers(token) });
+      if (!res.ok) return null;
+      const gist = await res.json();
+      const content = gist.files?.[FILENAME]?.content;
+      return content ? JSON.parse(content) : null;
+    } catch(e) { return null; }
+  }
+
+  async function save(payload) {
+    const token = getToken();
+    if (!token) return false;
+    let gistId = getGistId();
+    const body = JSON.stringify({
+      description: '푸꾸옥 여행 데이터 (가계부+메모)',
+      public: false,
+      files: { [FILENAME]: { content: JSON.stringify(payload, null, 2) } }
+    });
+    try {
+      let res;
+      if (gistId) {
+        res = await fetch(API + '/gists/' + gistId, { method: 'PATCH', headers: headers(token), body });
+      } else {
+        res = await fetch(API + '/gists', { method: 'POST', headers: headers(token), body });
+        if (res.ok) {
+          const data = await res.json();
+          localStorage.setItem(GIST_ID_KEY, data.id);
+        }
+      }
+      return res && res.ok;
+    } catch(e) { return false; }
+  }
+
+  async function connect(token) {
+    const gistId = await findGist(token);
+    localStorage.setItem(TOKEN_KEY, token);
+    if (gistId) { localStorage.setItem(GIST_ID_KEY, gistId); return { found: true, id: gistId }; }
+    localStorage.removeItem(GIST_ID_KEY);
+    return { found: false };
+  }
+
+  function disconnect() {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(GIST_ID_KEY);
+  }
+
+  return { getToken, getGistId, isConnected, load, save, connect, disconnect, FILENAME };
+})();
+
+// 동기화 모달 UI
+function updateSyncBtn() {
+  const btn = document.getElementById('syncNavBtn');
+  if (!btn) return;
+  if (GistSync.isConnected()) {
+    btn.textContent = '☁️ 동기화됨';
+    btn.classList.add('connected');
+  } else {
+    btn.textContent = '☁️ 동기화';
+    btn.classList.remove('connected');
+  }
+}
+
+function openSyncModal() {
+  const modal = document.getElementById('syncModal');
+  const body = document.getElementById('syncModalBody');
+  if (!modal || !body) return;
+
+  const connected = GistSync.isConnected();
+  if (connected) {
+    body.innerHTML = `
+      <p style="font-size:0.88rem;color:#2E7D32;margin-bottom:12px;">✅ 동기화 연결됨</p>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:16px;">Gist ID: <code style="font-size:0.75rem">${GistSync.getGistId()}</code></p>
+      <div class="sync-status" id="syncStatus"></div>
+      <div class="sync-row">
+        <button class="sync-connect-btn" onclick="syncNow()">🔄 지금 동기화</button>
+        <button class="sync-cancel-btn" onclick="closeSyncModal()">닫기</button>
+      </div>
+      <span class="sync-disconnect" onclick="doDisconnect()">연결 해제</span>`;
+  } else {
+    body.innerHTML = `
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">GitHub Personal Access Token을 입력하면 모든 기기에서 가계부·메모가 동기화됩니다.</p>
+      <input class="sync-input" type="password" id="syncTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+      <div class="sync-status" id="syncStatus"></div>
+      <div class="sync-row">
+        <button class="sync-connect-btn" id="syncConnectBtn" onclick="doConnect()">연결하기</button>
+        <button class="sync-cancel-btn" onclick="closeSyncModal()">취소</button>
+      </div>
+      <div class="sync-guide">
+        🔑 토큰 발급 방법:<br>
+        <a href="https://github.com/settings/tokens/new" target="_blank">github.com → Settings → Developer settings → Personal access tokens → Tokens (classic)</a><br>
+        → <strong>Gist</strong> 권한만 체크 후 생성<br>
+        → 토큰은 각 기기에서 한 번만 입력하면 됩니다
+      </div>`;
+  }
+  modal.style.display = 'flex';
+}
+
+function closeSyncModal() {
+  document.getElementById('syncModal').style.display = 'none';
+}
+
+async function doConnect() {
+  const token = document.getElementById('syncTokenInput').value.trim();
+  const status = document.getElementById('syncStatus');
+  const btn = document.getElementById('syncConnectBtn');
+  if (!token) { status.innerHTML = '<span class="sync-err">토큰을 입력해주세요</span>'; return; }
+
+  btn.disabled = true;
+  status.innerHTML = '<span class="sync-info">연결 중...</span>';
+
+  try {
+    const result = await GistSync.connect(token);
+    if (result.found) {
+      status.innerHTML = '<span class="sync-ok">✅ 기존 데이터 발견! 불러오는 중...</span>';
+      await loadFromGist();
+      status.innerHTML = '<span class="sync-ok">✅ 연결 완료, 데이터를 불러왔습니다</span>';
+    } else {
+      status.innerHTML = '<span class="sync-ok">✅ 연결 완료 (첫 저장 시 Gist 자동 생성)</span>';
+    }
+    updateSyncBtn();
+    setTimeout(openSyncModal, 1200);
+  } catch(e) {
+    status.innerHTML = '<span class="sync-err">❌ ' + (e.message || '연결 실패') + '</span>';
+    btn.disabled = false;
+  }
+}
+
+async function syncNow() {
+  const status = document.getElementById('syncStatus');
+  status.innerHTML = '<span class="sync-info">동기화 중...</span>';
+  const ok = await pushAllToGist();
+  status.innerHTML = ok
+    ? '<span class="sync-ok">✅ 저장 완료</span>'
+    : '<span class="sync-err">❌ 동기화 실패</span>';
+}
+
+function doDisconnect() {
+  if (!confirm('동기화 연결을 해제할까요?\n(로컬 데이터는 유지됩니다)')) return;
+  GistSync.disconnect();
+  updateSyncBtn();
+  closeSyncModal();
+}
+
+async function pushAllToGist() {
+  if (!GistSync.getToken()) return false;
+  const ledger = JSON.parse(localStorage.getItem('pq-ledger-2026') || '{"groups":[[],[],[],[]]}');
+  const memo = { text: localStorage.getItem('phuquoc_memo') || '', savedAt: localStorage.getItem('phuquoc_memo_time') || '' };
+  return await GistSync.save({ ledger, memo });
+}
+
+async function loadFromGist() {
+  const remote = await GistSync.load();
+  if (!remote) return;
+  if (remote.ledger) {
+    localStorage.setItem('pq-ledger-2026', JSON.stringify(remote.ledger));
+    if (window.ldReload) window.ldReload(remote.ledger);
+  }
+  if (remote.memo) {
+    localStorage.setItem('phuquoc_memo', remote.memo.text || '');
+    localStorage.setItem('phuquoc_memo_time', remote.memo.savedAt || '');
+    const ta = document.getElementById('memoText');
+    if (ta) ta.value = remote.memo.text || '';
+    const el = document.getElementById('memoSavedTime');
+    if (el && remote.memo.savedAt) el.textContent = '마지막 저장: ' + new Date(remote.memo.savedAt).toLocaleString('ko-KR');
+  }
+}
+
+// 페이지 로드 시 Gist에서 불러오기
+document.addEventListener('DOMContentLoaded', function() {
+  updateSyncBtn();
+  if (GistSync.isConnected()) loadFromGist();
+});
+
 // 메모장
 (function() {
   const MEMO_KEY = 'phuquoc_memo';
@@ -3623,6 +3867,7 @@ section:nth-of-type(odd) { background: transparent; }
     localStorage.setItem(MEMO_KEY, ta.value);
     localStorage.setItem(MEMO_TIME_KEY, now);
     updateMemoTime(now);
+    pushAllToGist();
     const btn = document.querySelector('.memo-save');
     if (btn) {
       const orig = btn.textContent;
@@ -3747,7 +3992,19 @@ if (scrollTopBtn) {
   if (!Array.isArray(data.groups) || data.groups.length < 4)
     data = { groups:[[],[],[],[]] };
 
-  function save() { localStorage.setItem(LEDGER_KEY, JSON.stringify(data)); }
+  function save() {
+    localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
+    pushAllToGist();
+  }
+
+  window.ldReload = function(newData) {
+    if (newData && Array.isArray(newData.groups) && newData.groups.length >= 4) {
+      data = newData;
+      const activeTab = document.querySelector('.ledger-tab.active');
+      const gi = activeTab ? parseInt(activeTab.dataset.group) : 0;
+      renderPanel(gi);
+    }
+  };
   function vndToKrw(v) { return Math.round(v / 1000 * RATE); }
   function fmtV(v) { return (v||0).toLocaleString() + ' VND'; }
   function fmtK(v) { return '≈ ' + vndToKrw(v||0).toLocaleString() + '원'; }
@@ -3881,5 +4138,16 @@ if (scrollTopBtn) {
   sections.forEach(s => observer.observe(s));
 })();
 </script>
+
+<!-- ===== GIST 동기화 모달 ===== -->
+<div id="syncModal" class="sync-overlay" style="display:none" onclick="if(event.target===this)closeSyncModal()">
+  <div class="sync-modal">
+    <div class="sync-modal-header">
+      <h3>☁️ GitHub 동기화</h3>
+      <button onclick="closeSyncModal()">✕</button>
+    </div>
+    <div id="syncModalBody"></div>
+  </div>
+</div>
 </body>
 </html>
