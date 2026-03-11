@@ -22,6 +22,7 @@
       width: 148.5mm; height: 210mm;
       padding: 7mm 8mm;
       overflow: hidden; position: relative; background: white;
+      display: flex; flex-direction: column; justify-content: space-between;
     }
     .a5-page.left { border-right: 1px dashed #bbb; }
 
@@ -39,10 +40,10 @@
     .row { display: flex; gap: 4px; margin-bottom: 4px; }
     .col2 { flex: 1; }
 
-    .tl-item { display: flex; gap: 4px; margin-bottom: 3px; align-items: flex-start; }
-    .tl-time { font-size: 6.5pt; color: #666; white-space: nowrap; min-width: 25px; font-weight: 700; padding-top: 1px; }
-    .tl-title { font-weight: 700; font-size: 8pt; }
-    .tl-desc { font-size: 6.5pt; color: #555; }
+    .tl-item { display: flex; gap: 5px; margin-bottom: 6px; align-items: flex-start; }
+    .tl-time { font-size: 7pt; color: #666; white-space: nowrap; min-width: 28px; font-weight: 700; padding-top: 1px; }
+    .tl-title { font-weight: 700; font-size: 9pt; }
+    .tl-desc { font-size: 7.5pt; color: #555; }
 
     .spot-img { width: 100%; max-height: 45mm; object-fit: cover; border-radius: 4px; margin-bottom: 4px; }
     .spot-img-sm { width: 100%; max-height: 28mm; object-fit: cover; border-radius: 3px; margin-bottom: 3px; }
@@ -75,6 +76,19 @@
 
     .fx-tip { background: #E0F7FA; border-radius: 4px; padding: 4px 8px; font-size: 7.5pt; text-align: center; font-weight: 700; margin-bottom: 4px; }
 
+    .food-grid { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+    .food-card { border-radius:5px; overflow:hidden; line-height:1.4; display:flex; flex-direction:column; }
+    .food-img { height:13mm; display:flex; align-items:center; justify-content:center; font-size:20pt; flex-shrink:0; background-size:cover; background-position:center; background-blend-mode:multiply; }
+    .food-body { flex:1; padding:4px 5px; display:flex; flex-direction:column; }
+    .food-name { font-weight:900; font-size:8pt; margin-bottom:2px; }
+    .food-prices { display:grid; grid-template-columns:1fr 1fr; gap:0 2px; font-size:6.5pt; opacity:0.9; flex:1; line-height:1.55; }
+    .food-review { font-size:6.5pt; font-style:italic; opacity:0.88; }
+    .food-meta { font-size:5.8pt; opacity:0.72; }
+    .area-sonasea { background:linear-gradient(135deg,#1565C0,#1E88E5); color:white; }
+    .area-duongdong { background:linear-gradient(135deg,#2E7D32,#43A047); color:white; }
+    .area-beach { background:linear-gradient(135deg,#00838F,#00ACC1); color:white; }
+    .area-grandworld { background:linear-gradient(135deg,#6A1B9A,#8E24AA); color:white; }
+    .area-sunset { background:linear-gradient(135deg,#E65100,#F57C00); color:white; }
     @media screen { body { padding: 20px; background: #e0e0e0; } .a4-sheet { box-shadow: 0 4px 12px rgba(0,0,0,0.3); margin-bottom: 24px; } }
     @media print { body { background: white; padding: 0; } .a4-sheet { margin: 0; box-shadow: none; } }
   </style>
@@ -90,9 +104,9 @@
       <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg/600px-Bai-sao-phu-quoc-tuonglamphotos.jpg"
            alt="바이사오 해변" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
       <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom,rgba(0,60,64,0.72)0%,rgba(0,100,90,0.55)50%,rgba(0,50,40,0.82)100%);"></div>
-      <div style="position:relative;z-index:1;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;text-align:center;padding:12mm 8mm;">
-        <div style="font-size:28pt;margin-bottom:4px;">🌴</div>
-        <div style="font-size:17pt;font-weight:900;line-height:1.2;margin-bottom:6px;">푸꾸옥<br>가족여행 2026</div>
+      <div style="position:relative;z-index:1;color:white;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;height:100%;text-align:center;padding:18mm 8mm 8mm;">
+        <div style="font-size:36pt;margin-bottom:6px;">🌴</div>
+        <div style="font-size:22pt;font-weight:900;line-height:1.2;margin-bottom:8px;">푸꾸옥<br>가족여행 2026</div>
         <div style="width:40mm;height:1px;background:rgba(255,255,255,0.5);margin:5px auto;"></div>
         <div style="font-size:9pt;font-weight:700;margin-bottom:2px;">2026년 4월 1일(수) ~ 5일(일)</div>
         <div style="font-size:8pt;color:rgba(255,255,255,0.9);">4박 5일 · 총 12명</div>
@@ -100,6 +114,17 @@
         <div style="width:40mm;height:1px;background:rgba(255,255,255,0.5);margin:7px auto;"></div>
         <div style="font-size:9pt;font-weight:700;color:#B2DFDB;">VJ977 ✈ VJ976</div>
         <div style="font-size:7pt;color:rgba(255,255,255,0.8);margin-top:2px;">베스트웨스턴 프리미어 소나시</div>
+        <div style="width:40mm;height:1px;background:rgba(255,255,255,0.4);margin:10px auto 8px;"></div>
+        <div style="background:rgba(0,0,0,0.25);border-radius:6px;padding:6px 10px;width:calc(100% - 4mm);text-align:left;">
+          <div style="font-size:6pt;color:rgba(255,255,255,0.6);margin-bottom:4px;text-align:center;letter-spacing:1px;">📅 일정 요약</div>
+          <div style="font-size:7pt;line-height:2.0;color:rgba(255,255,255,0.9);">
+            <div>🛫 4/1(수) 도착 · 마사지 · 킹콩마트 · 야시장</div>
+            <div>🦒 4/2(목) 빈펄사파리 · 그랜드월드 야경</div>
+            <div>🚡 4/3(금) 케이블카 · 심포니오브더씨 불꽃</div>
+            <div>🎡 4/4(토) 빈원더스 · VJ976 귀국 20:45</div>
+            <div>🛬 4/5(일) 인천공항 04:00 도착</div>
+          </div>
+        </div>
         <div style="position:absolute;bottom:5mm;left:0;right:0;text-align:center;font-size:6pt;color:rgba(255,255,255,0.45);">Phú Quốc · Vietnam</div>
       </div>
     </div>
@@ -639,10 +664,511 @@
   </div>
 </div>
 
-<!-- ===== SHEET 6: 체크리스트 + 뒷표지 ===== -->
+<!-- ===== SHEET 6: 소나시+즈엉동 맛집 ===== -->
 <div class="a4-sheet">
 
-  <!-- Page 11: 체크리스트 -->
+  <!-- Page 11: 소나시 야시장 맛집 -->
+  <div class="a5-page left" style="display:flex;flex-direction:column;">
+    <div class="sec-title area-sonasea" style="margin:-7mm -8mm 0;padding:5px 8mm;flex-shrink:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg/400px-Bai-sao-phu-quoc-tuonglamphotos.jpg');background-size:cover;background-position:center;background-blend-mode:multiply;">🍽️ 소나시 야시장 맛집 (호텔 도보권)</div>
+
+    <div class="food-grid" style="flex:1;grid-auto-rows:1fr;margin-top:4px;">
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://lh3.googleusercontent.com/sitesv/APaQ0SSUTVsivBrndr5a48gb6FFGwv2t44AxHMGvbrHjwQcBcWS-2vVgcmrnXYj7WH37_gsgG-3cOjoqHqgnoQbkk6IqGj12TkO6Kh7ZnbObjwyBExzQW8PLvE_bdYeiJ9tybr2bbvqV7eiB8M37Oloi3yxKA3Oi5TKUJsd-e76NdOF2DxIiL_fHy3mHxub_UqTPKv92lyLEzvwuPvOZu3xLKmPmI3zDL2QdMlyqgy0=w1280');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">냐항센 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🥞 반쎄오 85K</div><div>🦑 총알오징어 120K</div>
+            <div>🍜 분짜 70K</div><div>🦐 버터새우 150K</div>
+          </div>
+          <div class="food-review">"야시장 입구 에어컨, 가성비 최고!"</div>
+          <div class="food-meta">📍 야시장 입구 · ⏰ 17:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://rootytrip.com/wp-content/uploads/2023/06/ngon-otto-restaurants.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">NGON OTTO ⭐4.5</div>
+          <div class="food-prices">
+            <div>🦀 게살볶음밥 130K</div><div>🥞 반쎄오 110K</div>
+            <div>🌊 해물볶음면 120K</div><div>🥗 씨푸드샐러드 90K</div>
+          </div>
+          <div class="food-review">"두 지점 모두 찐맛집, 가성비 굿"</div>
+          <div class="food-meta">📍 소나시 & Bãi Trường · 2지점</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea">🍜</div>
+        <div class="food-body">
+          <div class="food-name">오케이 비스트로 ⭐4.3</div>
+          <div class="food-prices">
+            <div>🍖 갈비덮밥 90K</div><div>🍜 쌀국수 70K</div>
+            <div>🍚 볶음밥 85K</div><div>🥖 반미 40K</div>
+          </div>
+          <div class="food-review">"07:00 이른 아침도 OK! 양 푸짐"</div>
+          <div class="food-meta">📍 Đường Bào · ⏰ 07:00~20:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://media-cdn.tripadvisor.com/media/photo-o/19/ce/fa/aa/le-seoul-by-sikgaek-korean.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">식객 Le Seoul ⭐4.6</div>
+          <div class="food-prices">
+            <div>🦑 오징어덮밥 160K</div><div>🦀 꽃게탕 250K</div>
+            <div>🥩 삼겹살 180K</div><div>🥞 파전 90K</div>
+          </div>
+          <div class="food-review">"한국 맛집 수준! 반찬 정성 가득"</div>
+          <div class="food-meta">📍 Sonasea Villas · ⏰ 11:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://bwpremier-sonaseaphuquoc.com/wp-content/uploads/2023/09/CView-Sky-Bar_8-1-1.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">Cview Sky Bar ⭐4.4</div>
+          <div class="food-prices">
+            <div>🍹 열대칵테일 200K</div><div>🍺 맥주 80K</div>
+            <div>🍕 피자 150K</div><div>🍟 스낵 70K</div>
+          </div>
+          <div class="food-review">"베스트웨스턴 루프탑 석양 파노라마!"</div>
+          <div class="food-meta">📍 호텔 내 루프탑 · ⏰ 17:00~24:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://rootytrip.com/wp-content/uploads/2023/06/zo-flame-grill-viet-nam-home-food.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">조 프레임 그릴 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🦐 새우치즈구이 180K</div><div>🍜 해물볶음면 150K</div>
+            <div>🦞 랍스터 350K</div><div>🥩 스테이크 250K</div>
+          </div>
+          <div class="food-review">"직화구이 프레젠테이션 인상적!"</div>
+          <div class="food-meta">📍 Sonasea Resort · ⏰ 17:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://sailingclubphuquoc.com/wp-content/uploads/2024/05/DAVID-MEDIA-28th-April-272-1500x936.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">세일링클럽 ⭐4.3</div>
+          <div class="food-prices">
+            <div>🦑 오징어튀김 120K</div><div>🍔 나쵸버거 140K</div>
+            <div>🍹 칵테일 150K</div><div>🍺 맥주 50K</div>
+          </div>
+          <div class="food-review">"불쇼+야외씨팅 롱비치 선셋 명소"</div>
+          <div class="food-meta">📍 Trường Sa Road · ⏰ 11:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sonasea">
+        <div class="food-img area-sonasea" style="background-image:url('https://hungrygowhere.com/wp-content/uploads/2025/06/09-rj-Phu-Quoc-restaurants-Ricardo-HungryGoWhere.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">리꼬르도 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🍕 화덕피자 220K</div><div>🥭 망고빙수 90K</div>
+            <div>🍝 파스타 180K</div><div>☕ 커피 50K</div>
+          </div>
+          <div class="food-review">"망고빙수+화덕피자 이색 조합!"</div>
+          <div class="food-meta">📍 Mojo Hotel, 소나시 · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:5px;flex-shrink:0;">
+      💡 소나시 야시장 = 즈엉동보다 더 <strong>깔끔하고 합리적</strong>. 체크인 후 저녁 산책 코스로 딱!
+    </div>
+    <span class="pg-num">11</span>
+  </div>
+
+  <!-- Page 12: 즈엉동 맛집 10곳 -->
+  <div class="a5-page" style="display:flex;flex-direction:column;">
+    <div class="sec-title area-duongdong" style="margin:-7mm -8mm 0;padding:5px 8mm;flex-shrink:0;">🍜 즈엉동 맛집 (야시장 거리 · Trần Hưng Đạo)</div>
+
+    <div class="food-grid" style="flex:1;grid-auto-rows:1fr;margin-top:4px;">
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://itin-dev.wanderlogstatic.com/freeImage/O3i4CxdlWrsyD5u1JzUT7697Ok8MPO8z');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">TOM HOUSE ⭐4.6</div>
+          <div class="food-prices">
+            <div>🦞 랍스터구이 시가</div><div>🐚 가리비치즈 160K</div>
+            <div>🍤 새우튀김 120K</div><div>🦀 게볶음밥 130K</div>
+          </div>
+          <div class="food-review">"한국어 가능, 야시장 인근 찐맛집!"</div>
+          <div class="food-meta">📍 1D Võ Thị Sáu · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://phuquocmap.com/wp-content/uploads/2025/01/nha-hang-xin-chao-phu-quoc-4-1-1024x683.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">신짜오 씨푸드 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🦞 갈릭버터랍스터 시가</div><div>🐚 가리비 140K</div>
+            <div>🦐 새우구이 160K</div><div>🍲 해물국 80K</div>
+          </div>
+          <div class="food-review">"해변 창가 노을뷰, 한국어 메뉴!"</div>
+          <div class="food-meta">📍 66 Trần Hưng Đạo · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong" style="border:2px solid #FFF176;">
+        <div class="food-img area-duongdong" style="background-image:url('https://ak-d.tripcdn.com/images/1mi1i224x8uwiyb5x72CD.jpg?proc=source/trip');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">MEO Kitchen ⭐4.8</div>
+          <div class="food-prices">
+            <div>🥞 반쎄오 90K</div><div>🥖 반미짜오 65K</div>
+            <div>🍢 꼬치구이 70K</div><div>🍜 쌀국수 70K</div>
+          </div>
+          <div class="food-review">"킹콩마트 근처 구글 4.8★, 양 엄청!"</div>
+          <div class="food-meta">📍 126 Trần Hưng Đạo · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://hanoidep.vn/wp-content/uploads/2025/10/banh-xeo-thom-ngon-dep-mat-tai-banh-xeo-cuoi-com-nha-cuoi-30-thang-4-phu-quoc-1200x900.webp');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">반쎄오꾸오이3 ⭐4.8</div>
+          <div class="food-prices">
+            <div>🥞 해물반쎄오 120K</div><div>🥞 고기반쎄오 100K</div>
+            <div>🍢 넴느엉 80K</div><div>🌯 스프링롤 70K</div>
+          </div>
+          <div class="food-review">"트립어드바이저 4.8★ 바삭함 최강!"</div>
+          <div class="food-meta">📍 28A Đường 30/4 · ⏰ 09:00~21:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://rootytrip.com/wp-content/uploads/2025/03/pho-in-sai-gon.webp');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">퍼사이공 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🍜 스페셜쌀국수 70K</div><div>🍖 갈비쌀국수 80K</div>
+            <div>🥖 반미 30K</div><div>☕ 에그커피 35K</div>
+          </div>
+          <div class="food-review">"현지인 단골, 육수가 진짜 시원함"</div>
+          <div class="food-meta">📍 31 Đường 30/4 · ⏰ 06:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://impresstravel.com/wp-content/uploads/2025/05/Crab-House-Phu-Quoc-Review-Price-Menu-Taste-5.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">크랩하우스 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🦀 게살볶음밥 130K</div><div>🌿 쌈밥세트 200K</div>
+            <div>🦀 게장 250K</div><div>🍲 씨푸드탕 180K</div>
+          </div>
+          <div class="food-review">"시그니처 쌈밥, 신선한 게장요리"</div>
+          <div class="food-meta">📍 26 Nguyễn Trãi · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://onbird.vn/wp-content/uploads/2024/07/Saigonese-Eatery-Phu-Quoc-2.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">사이고니즈이터리 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🥩 와규버거 180K</div><div>🍳 샥슈카 150K</div>
+            <div>🐟 그릴생선 160K</div><div>🍟 트러플감자 90K</div>
+          </div>
+          <div class="food-review">"퓨전 베트남, 인테리어 포토스팟"</div>
+          <div class="food-meta">📍 129 Trần Hưng Đạo · ⏰ 08:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://ak-d.tripcdn.com/images/1mi0l424x901915vl87AC.jpg?proc=source/trip');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">Tipsy Taco ⭐4.5</div>
+          <div class="food-prices">
+            <div>🌮 타코 130K</div><div>🌯 부리토 150K</div>
+            <div>🧀 케사디야 120K</div><div>🌽 나초 100K</div>
+          </div>
+          <div class="food-review">"정통 멕시칸! 신선재료, 서비스 빠름"</div>
+          <div class="food-meta">📍 114 Trần Hưng Đạo · ⏰ 10:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://foto.wuestenigel.com/wp-content/uploads/api2/deutsche-ba-ckerei-und-imbiss-hardys-german-bakery-and-cafe-mit-bayern-flagge-in-phu-quoc-vietnam.jpeg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">하디스 베이커리 ⭐4.6</div>
+          <div class="food-prices">
+            <div>🥭 망고스무디 65K</div><div>🥖 바게트샌드 80K</div>
+            <div>🍞 독일빵 50K</div><div>☕ 카푸치노 55K</div>
+          </div>
+          <div class="food-review">"아침 최적! 독일식 베이커리+카페"</div>
+          <div class="food-meta">📍 141 Trần Hưng Đạo · ⏰ 07:00~21:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://phuquocmap.com/wp-content/uploads/2026/01/Quan-Bo-To-68-Phu-Quoc-100c-Tran-Hung-Dao-Duong-Dong.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">Bơ 레스토랑 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🍤 크리스피새우 130K</div><div>🌯 치킨롤 110K</div>
+            <div>🍝 파스타 140K</div><div>☕ 아이스커피 45K</div>
+          </div>
+          <div class="food-review">"히피감성 친절한 사장님 숨은 맛집"</div>
+          <div class="food-meta">📍 100c Trần Hưng Đạo · ⏰ 10:00~21:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:5px;flex-shrink:0;">
+      ⭐ <strong>MEO Kitchen</strong>: 킹콩마트 쇼핑 후 도보 이동 가능. Day1·Day4 방문 강추!
+    </div>
+    <span class="pg-num">12</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 7: 중부추가+비치바 + 그랜드월드/선셋타운 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 13: 즈엉동 추가 + Long Beach 비치바 -->
+  <div class="a5-page left" style="display:flex;flex-direction:column;">
+    <div class="sec-title" style="background:linear-gradient(135deg,#2E7D32,#00838F);color:white;margin:-7mm -8mm 0;padding:5px 8mm;flex-shrink:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Bai-sao-phu-quoc-tuonglamphotos.jpg/400px-Bai-sao-phu-quoc-tuonglamphotos.jpg');background-size:cover;background-position:center;background-blend-mode:multiply;">🌊 즈엉동 추가 맛집 + Long Beach 비치바</div>
+
+    <div style="font-size:8pt;font-weight:700;color:#1B5E20;margin:4px 0 3px;flex-shrink:0;">🏙️ 즈엉동 추가 맛집</div>
+    <div class="food-grid" style="flex:1;grid-auto-rows:1fr;margin-bottom:5px;">
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://bazantravel.com/cdn/medias/uploads/85/85738-chuon-chuon-bistro-skybar-700x429.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">쭈온쭈온 비스트로 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🥥 코코넛스무디 80K</div><div>🍝 머쉬룸파스타 160K</div>
+            <div>🍹 칵테일 150K</div><div>🌊 씨푸드볶음 170K</div>
+          </div>
+          <div class="food-review">"즈엉동 야경 스카이라운지, 인증샷!"</div>
+          <div class="food-meta">📍 Dương Đông 스카이뷰 · ⏰ 17:00~24:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong">🇰🇷</div>
+        <div class="food-body">
+          <div class="food-name">파란집 Blue House ⭐4.4</div>
+          <div class="food-prices">
+            <div>🥩 삼겹살 250K</div><div>🍲 김치찌개 150K</div>
+            <div>🦑 오징어볶음 180K</div><div>🍲 된장찌개 140K</div>
+          </div>
+          <div class="food-review">"킹콩마트 근처, 한식 그리울 때!"</div>
+          <div class="food-meta">📍 킹콩마트 본점 인근 · ⏰ 11:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong">🍺</div>
+        <div class="food-body">
+          <div class="food-name">즈엉동 맥주거리 ⭐현지명소</div>
+          <div class="food-prices">
+            <div>🍺 생맥주 30K</div><div>🍢 현지안주 40K</div>
+            <div>🔥 구이 60K</div><div>🌭 소시지 50K</div>
+          </div>
+          <div class="food-review">"현지 최저가 생맥주 골목, 흥겨운 분위기"</div>
+          <div class="food-meta">📍 즈엉동 시내 골목 · ⏰ 17:00~24:00</div>
+        </div>
+      </div>
+      <div class="food-card area-duongdong">
+        <div class="food-img area-duongdong" style="background-image:url('https://img.tripi.vn/cdn-cgi/image/width=700,height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/474193deC/banh-mi-tam-1090465.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">반미탐 Bánh Mì Tâm ⭐4.7</div>
+          <div class="food-prices">
+            <div>🥖 스페셜반미 25K</div><div>🥚 계란반미 20K</div>
+            <div>🥖 파테반미 22K</div><div>🍗 치킨반미 30K</div>
+          </div>
+          <div class="food-review">"야시장 입구 아침용! 파테 가득!"</div>
+          <div class="food-meta">📍 11 Đường 30/4, 야시장입구 · ⏰ 06:00~12:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:1px;background:#ddd;margin:3px 0;flex-shrink:0;"></div>
+    <div style="font-size:8pt;font-weight:700;color:#006064;margin-bottom:4px;flex-shrink:0;">🌅 Long Beach 비치바 &amp; 선셋</div>
+    <div class="food-grid" style="flex:1;grid-auto-rows:1fr;">
+      <div class="food-card area-beach">
+        <div class="food-img area-beach" style="background-image:url('https://media-cdn.tripadvisor.com/media/photo-s/16/4f/21/cf/sunset-at-ocsen-beach.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">OCSEN Beach Bar ⭐4.5</div>
+          <div class="food-prices">
+            <div>🍹 칵테일 150K</div><div>🍺 맥주 50K</div>
+            <div>🥃 위스키 200K</div><div>🍷 화이트와인 180K</div>
+          </div>
+          <div class="food-review">"오렌지 빈백+불쇼! 저녁 비치바 1위"</div>
+          <div class="food-meta">📍 118 Trần Hưng Đạo · ⏰ 11:00~02:00</div>
+        </div>
+      </div>
+      <div class="food-card area-beach">
+        <div class="food-img area-beach" style="background-image:url('https://sailingclubphuquoc.com/wp-content/uploads/2024/05/DSCF4354-scaled.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">세일링클럽 비치바 ⭐4.4</div>
+          <div class="food-prices">
+            <div>🦑 오징어튀김 120K</div><div>🍔 나쵸버거 140K</div>
+            <div>🍹 칵테일 150K</div><div>🍺 맥주 50K</div>
+          </div>
+          <div class="food-review">"불쇼+야외씨팅 롱비치 선셋 명소!"</div>
+          <div class="food-meta">📍 Trường Sa Road · ⏰ 11:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-beach">
+        <div class="food-img area-beach">🍸</div>
+        <div class="food-body">
+          <div class="food-name">INK 360 루프탑 ⭐4.6</div>
+          <div class="food-prices">
+            <div>🍸 시그니처칵테일 250K</div><div>🐟 피시엔칩스 180K</div>
+            <div>🍟 스낵 120K</div><div>🥂 샴페인 350K</div>
+          </div>
+          <div class="food-review">"InterContinental 루프탑 360° 전망!"</div>
+          <div class="food-meta">📍 InterContinental · ⏰ 11:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-beach">
+        <div class="food-img area-beach" style="background-image:url('https://phuquocmap.com/wp-content/uploads/2025/11/40six-beach-haus.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">40six Beach Haus ⭐4.6</div>
+          <div class="food-prices">
+            <div>🍗 치킨윙 160K</div><div>🍕 망고피자 200K</div>
+            <div>🍔 버거 180K</div><div>🍹 열대칵테일 170K</div>
+          </div>
+          <div class="food-review">"가흐다우 해변 석양+DJ, 최고의 비치바"</div>
+          <div class="food-meta">📍 Tổ 01 Gành Dầu · ⏰ 11:00~23:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:5px;flex-shrink:0;">
+      🌅 비치바는 <strong>18:00 전 도착 필수</strong>! 선셋 자리 경쟁 치열. OCSEN 불쇼 30분 전 착석 추천.
+    </div>
+    <span class="pg-num">13</span>
+  </div>
+
+  <!-- Page 14: 그랜드월드 + 선셋타운 -->
+  <div class="a5-page" style="display:flex;flex-direction:column;">
+    <div class="sec-title area-grandworld" style="margin:-7mm -8mm 0;padding:5px 8mm;flex-shrink:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/2023-07-30_Grand_World_Ph%C3%BA_Qu%E1%BB%91c_212124.jpg/400px-2023-07-30_Grand_World_Ph%C3%BA_Qu%E1%BB%91c_212124.jpg');background-size:cover;background-position:center;background-blend-mode:multiply;">🏙️ 그랜드월드 · 선셋타운 맛집</div>
+
+    <div style="font-size:8pt;font-weight:700;color:#4A148C;margin:4px 0 3px;flex-shrink:0;">🏙️ 그랜드월드 (무료입장 · 08:00~22:00)</div>
+    <div class="food-grid" style="flex:3;grid-auto-rows:1fr;margin-bottom:4px;">
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld" style="background-image:url('https://ak-d.tripcdn.com/images/1mi5b224x91ltvljv266B.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">꼬어이 COOI ⭐4.7</div>
+          <div class="food-prices">
+            <div>🍍 파인애플볶음밥 160K</div><div>🍜 분짜 110K</div>
+            <div>🥞 반쎄오 170K</div><div>🌯 게살스프링롤 120K</div>
+          </div>
+          <div class="food-review">"한국인 No.1! 한국어 메뉴판 완비"</div>
+          <div class="food-meta">📍 SA-03-37 웨일스파 옆 · ⏰ 07:00~21:00</div>
+        </div>
+      </div>
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld">🍜</div>
+        <div class="food-body">
+          <div class="food-name">마담타오 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🍜 뚝배기쌀국수 90K</div><div>🍜 분짜 85K</div>
+            <div>🍚 해산물볶음밥 110K</div><div>🌯 고이꾸온 70K</div>
+          </div>
+          <div class="food-review">"한국인 입맛 맞춤 현지식 강추!"</div>
+          <div class="food-meta">📍 TH21 Thượng Hải거리 · ⏰ 07:00~21:00</div>
+        </div>
+      </div>
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld" style="background-image:url('https://vietnamstory.in/wp-content/uploads/2025/07/bun-quay-kien-xay.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">끼엔써이 ⭐4.5</div>
+          <div class="food-prices">
+            <div>🦑 오징어쌀국수 100K</div><div>🍲 해물국 80K</div>
+            <div>🍜 베트남쌀국수 75K</div><div>☕ 커피 35K</div>
+          </div>
+          <div class="food-review">"시원한 오징어 육수, 현지인 줄서는 집"</div>
+          <div class="food-meta">📍 Thượng Hải 1 거리 · ⏰ 15:15~21:30</div>
+        </div>
+      </div>
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld">🍽️</div>
+        <div class="food-body">
+          <div class="food-name">껌냐 Com Nha ⭐4.5</div>
+          <div class="food-prices">
+            <div>🥞 반쎄오 120K</div><div>🍢 넴누이꼬치 80K</div>
+            <div>🍜 쌀국수 80K</div><div>🍚 볶음밥 100K</div>
+          </div>
+          <div class="food-review">"푸꾸옥고스트 VIP카드 5% 할인!"</div>
+          <div class="food-meta">📍 SA-01-23 · ⏰ 08:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld" style="background-image:url('https://ak-d.tripcdn.com/images/1mi2u224x96gxlxiwA8EE.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">푸짐 PHUZIM ⭐4.4</div>
+          <div class="food-prices">
+            <div>🥩 삼겹살 250K</div><div>🥩 막창 220K</div>
+            <div>🍲 된장찌개 150K</div><div>🍶 소주 90K</div>
+          </div>
+          <div class="food-review">"그랜드월드 한식당, 포장·배달 가능"</div>
+          <div class="food-meta">📍 Grand World 내 · ⏰ 11:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-grandworld">
+        <div class="food-img area-grandworld" style="background-image:url('https://hoiandaytrip.com/wp-content/uploads/2025/08/highlands-coffee.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">Highlands Coffee ⭐4.3</div>
+          <div class="food-prices">
+            <div>☕ 에그커피 55K</div><div>🥥 코코넛라떼 65K</div>
+            <div>☕ 베트남커피 45K</div><div>🍰 케이크 75K</div>
+          </div>
+          <div class="food-review">"베트남 국민 카페, 관람 전후 휴식"</div>
+          <div class="food-meta">📍 Grand World 내 · ⏰ 07:00~22:00</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="height:1px;background:#ddd;margin:2px 0;flex-shrink:0;"></div>
+    <div style="font-size:8pt;font-weight:700;color:#E65100;margin-bottom:4px;flex-shrink:0;">🌅 선셋타운 &amp; 남부 (케이블카 Day 3)</div>
+    <div class="food-grid" style="flex:2;grid-auto-rows:1fr;">
+      <div class="food-card area-sunset">
+        <div class="food-img area-sunset" style="background-image:url('https://phuquocmap.com/wp-content/uploads/2025/01/Runam-cafe.jpg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">루남 RUNAM ⭐4.6</div>
+          <div class="food-prices">
+            <div>🥩 소고기볶음밥 290K</div><div>🍝 씨푸드알리올리오 280K</div>
+            <div>🥚 에그베네딕트 180K</div><div>🥤 열대음료 100K</div>
+          </div>
+          <div class="food-review">"코지한 분위기, 불꽃놀이 창가석 뷰!"</div>
+          <div class="food-meta">📍 Sunset Town · ⏰ 07:00~22:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sunset">
+        <div class="food-img area-sunset" style="background-image:url('https://phuquocmap.com/wp-content/uploads/2025/02/IMG_6454.jpeg');background-blend-mode:normal;"></div>
+        <div class="food-body">
+          <div class="food-name">Draft Beer Bai Khem ⭐4.5</div>
+          <div class="food-prices">
+            <div>🍺 생맥주 60K</div><div>🦐 해산물안주 150K</div>
+            <div>🌊 씨푸드 200K</div><div>🍗 치킨 120K</div>
+          </div>
+          <div class="food-review">"바이껨 해변 야외, 케이블카 후 필수!"</div>
+          <div class="food-meta">📍 Bãi Khem, An Thới · ⏰ 10:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sunset">
+        <div class="food-img area-sunset">🌊</div>
+        <div class="food-body">
+          <div class="food-name">선셋타운 씨푸드거리 ⭐현지명소</div>
+          <div class="food-prices">
+            <div>🦞 직화랍스터 시가</div><div>🦐 새우구이 180K</div>
+            <div>🍺 생맥주 40K</div><div>🐚 조개찜 150K</div>
+          </div>
+          <div class="food-review">"케이블카 후 해질녘 분위기 최고!"</div>
+          <div class="food-meta">📍 An Thới 해변 거리 · ⏰ 16:00~23:00</div>
+        </div>
+      </div>
+      <div class="food-card area-sunset" style="background:linear-gradient(135deg,#BF360C,#E64A19);">
+        <div class="food-img" style="background:linear-gradient(135deg,#BF360C,#E64A19);height:13mm;display:flex;align-items:center;justify-content:center;font-size:20pt;">📱</div>
+        <div class="food-body">
+          <div class="food-name">맛집 전체 지도 QR</div>
+          <div class="food-prices">
+            <div>📍 구글맵 핀 전체</div><div>📋 메뉴 상세보기</div>
+            <div>📞 예약링크</div><div>⭐ 리뷰 모음</div>
+          </div>
+          <div class="food-review">"뒷표지 QR → 온라인 완전판 가이드"</div>
+          <div class="food-meta">📱 뒷표지 16p QR 코드 스캔</div>
+        </div>
+      </div>
+    </div>
+
+    <span class="pg-num">14</span>
+  </div>
+</div>
+
+<!-- ===== SHEET 8: 체크리스트 + 뒷표지 ===== -->
+<div class="a4-sheet">
+
+  <!-- Page 15: 체크리스트 -->
   <div class="a5-page left">
     <div class="sec-title" style="background:#455A64;color:white;margin:-7mm -8mm 5px;padding:4px 8mm;">✅ 준비물 체크리스트</div>
 
@@ -718,10 +1244,10 @@
       👕 반팔·반바지가 전부! 슬리퍼는 킹콩마트서 구매. 캐리어 반만 채워가기!
     </div>
 
-    <span class="pg-num">11</span>
+    <span class="pg-num">15</span>
   </div>
 
-  <!-- Page 12: 뒷표지 -->
+  <!-- Page 16: 뒷표지 -->
   <div class="a5-page" style="padding:0;">
     <div style="position:relative;width:100%;height:100%;background:linear-gradient(160deg,#006064 0%,#00897B 45%,#004D40 100%);">
       <div style="position:relative;z-index:1;color:white;display:flex;flex-direction:column;align-items:center;padding:9mm 8mm 7mm;">
@@ -761,7 +1287,7 @@
 
       </div>
     </div>
-    <span class="pg-num" style="color:rgba(255,255,255,0.35);z-index:2;">12</span>
+    <span class="pg-num" style="color:rgba(255,255,255,0.35);z-index:2;">16</span>
   </div>
 </div>
 
