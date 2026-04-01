@@ -3960,6 +3960,20 @@ if (scrollTopBtn) {
   if (!Array.isArray(data.budgets) || data.budgets.length < 4)
     data.budgets = [0,0,0,0];
 
+  // 환율 변경 시 KRW 항목 VND 재계산
+  (function migrateRate() {
+    let changed = false;
+    data.groups.forEach(group => {
+      group.forEach(e => {
+        if (e.currency === 'KRW' && e.amount) {
+          const correct = Math.round(e.amount * 1000 / 57.4);
+          if (e.vnd !== correct) { e.vnd = correct; changed = true; }
+        }
+      });
+    });
+    if (changed) localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
+  })();
+
   function save() {
     localStorage.setItem(LEDGER_KEY, JSON.stringify(data));
     pushToSheets();
