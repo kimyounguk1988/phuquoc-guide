@@ -1275,21 +1275,25 @@ section:nth-of-type(odd) { background: transparent; }
         .badge-hain{background:#E3F2FD;color:#1565C0;font-size:0.65rem;padding:2px 7px;border-radius:99px;white-space:nowrap;flex-shrink:0;}
         .badge-local{background:#FFF3E0;color:#E65100;font-size:0.65rem;padding:2px 7px;border-radius:99px;white-space:nowrap;flex-shrink:0;}
         .kara-details{padding:0 12px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .2s;}
-        .kara-details.open{max-height:900px;padding:10px 12px 12px;}
+        .kara-details.open{max-height:1200px;padding:10px 12px 12px;}
+        .kara-desc{font-size:0.8rem;color:#444;line-height:1.6;background:#F8FBF8;padding:8px 10px;border-radius:6px;margin-bottom:8px;border-left:3px solid #A5D6A7;}
         .kara-row{font-size:0.79rem;margin-bottom:4px;line-height:1.5;color:#333;}
+        .kara-mapbtn{font-size:0.7rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;margin-left:4px;}
         .kara-pt{width:100%;border-collapse:collapse;font-size:0.75rem;margin:6px 0;background:#f9f9f9;border-radius:6px;overflow:hidden;}
         .kara-pt td{padding:4px 8px;border-bottom:1px solid #eee;}
         .kara-pt tr:last-child td{border-bottom:none;}
         .kara-pt td:last-child{text-align:right;font-weight:700;color:#006064;}
-        .kara-promo{background:#FFF8E1;border-left:3px solid #FFC107;padding:5px 8px;font-size:0.76rem;border-radius:0 4px 4px 0;margin:6px 0;}
-        .kara-contact{background:#E8F5E9;padding:5px 8px;font-size:0.76rem;border-radius:4px;margin-top:6px;}
-        .kara-tip{background:#F3E5F5;padding:5px 8px;font-size:0.75rem;border-radius:4px;margin-top:4px;color:#4A148C;}
+        .kara-pt th{background:#E0F2F1;padding:4px 8px;font-size:0.72rem;text-align:left;color:#00695C;}
+        .kara-promo{background:#FFF8E1;border-left:3px solid #FFC107;padding:6px 9px;font-size:0.77rem;border-radius:0 4px 4px 0;margin:6px 0;}
+        .kara-warn{background:#FFF3E0;border-left:3px solid #FF9800;padding:6px 9px;font-size:0.77rem;border-radius:0 4px 4px 0;margin:6px 0;}
+        .kara-contact{background:#E8F5E9;padding:6px 9px;font-size:0.77rem;border-radius:4px;margin-top:6px;}
         .kara-note{background:#E8F5E9;padding:6px 10px;font-size:0.78rem;border-radius:6px;margin-bottom:10px;color:#1B5E20;}
+        .kara-vat{font-size:0.72rem;color:#666;margin-top:3px;}
       </style>
 
-      <div class="kara-note">📞 공통 예약 연락처 — 카카오채널 <strong>뜨밤</strong> / 카톡 <strong>hcm9535</strong> · <strong>hcm9137</strong> · 텔레그램 <strong>@hcm9535</strong></div>
+      <div class="kara-note">📞 공통 예약 — 카카오채널 <strong>뜨밤</strong> / <strong>핫한밤</strong> &nbsp;·&nbsp; 카톡 <strong>hcm9535</strong> · <strong>hcm9137</strong> &nbsp;·&nbsp; 텔레 <strong>@hcm9535</strong></div>
 
-      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">🏢 한인 가라오케 (9곳) — 사진 클릭 시 상세정보</div>
+      <div style="font-size:0.8rem;font-weight:700;color:#555;margin-bottom:8px;">🏢 한인 가라오케 (9곳) — 사진 또는 이름 클릭 시 상세정보</div>
       <div class="kara-grid">
 
         <div class="kara-card">
@@ -1298,17 +1302,19 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">두바이 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 16 Mạc Thị Bưởi, 1군 <a href="https://maps.google.com/?q=16+Mạc+Thị+Bưởi%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:00 ~ 손님 가실 때까지</div>
+            <div class="kara-desc">호치민 1군에 위치. 오픈시간 오후 5시부터 손님 가실 때까지. 1인~15인 수용 가능한 룸 보유. 평균 50명 이상 출근. 365일 24시간 문의 가능. 뜨밤회원 단독케어.</div>
+            <div class="kara-row">📍 16 Mạc Thị Bưởi, P. Phú Thuận, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=16+Mac+Thi+Buoi+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:00 ~ 손님 가실 때까지</div>
             <table class="kara-pt">
-              <tr><td>맥주/소주 세트 (4인)</td><td>4,500,000 VND</td></tr>
+              <tr><th colspan="2">💰 가격표 (4인 기준)</th></tr>
+              <tr><td>맥주·소주 세트</td><td>4,500,000 VND</td></tr>
               <tr><td>양주 세트</td><td>4,500,000 VND~</td></tr>
               <tr><td>마담 팁</td><td>500,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>300,000 VND</td></tr>
-              <tr><td>아가씨 팁 (3h)</td><td>500,000 VND</td></tr>
+              <tr><td>아가씨 팁 (3시간/인)</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-promo">🎁 뜨밤 예약 시 맥주 5캔 무료</div>
-            <div class="kara-tip">ℹ️ 부가세 10% · 1~15인 룸 · 평균 50명+ 출근</div>
+            <div class="kara-vat">※ 부가세 10% 별도 (현금결제 시 주대만 10% 부과)</div>
+            <div class="kara-promo">🎁 뜨밤 예약 시 맥주 5캔 무료 서비스</div>
             <div class="kara-contact">📞 카톡 hcm8252 · 텔레 @hcm9535</div>
           </div>
         </div>
@@ -1319,16 +1325,17 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">오로라 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 71 Lê Thị Hồng Gấm, 1군 <a href="https://maps.google.com/?q=71+Lê+Thị+Hồng+Gấm%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:00 ~ 02:00</div>
+            <div class="kara-desc">업력이 꽤 긴 한인 가라오케. 시설은 최신식은 아니지만 사장님 관리 하에 쾌적하게 유지. 1군 시내 위치로 빈홈·7군에서도 접근성 좋음. 가라오케 처음 방문자에게 추천. 수질은 한인 가라오케 중 평균~평균 이상으로 좋은 편.</div>
+            <div class="kara-row">📍 71 Đ. Lê Thị Hồng Gấm, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=71+Le+Thi+Hong+Gam+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:00 ~ 02:00</div>
             <table class="kara-pt">
-              <tr><td>주대 SET (2~3인)</td><td>4,500,000 VND</td></tr>
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>주대 SET (2~3인 기준)</td><td>4,500,000 VND</td></tr>
               <tr><td>4인 1.5세트</td><td>6,000,000 VND</td></tr>
               <tr><td>마담 팁</td><td>500,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>300,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 1군 시내 위치 · 업력 긴 한인 가라오케</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
@@ -1338,36 +1345,40 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">썬 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 44 Cao Triều Phát, 7군 (푸미흥) <a href="https://maps.google.com/?q=44+Cao+Triều+Phát%2C+7군+(푸미흥)+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 16:00 ~ 02:00</div>
+            <div class="kara-desc">푸미흥(7군) 뉴라이프 바로 옆에 위치. 7군 거주자들에게 가장 사랑받는 가라오케. 후기 대체적으로 좋은 편. 1인 세트 별도 문의.</div>
+            <div class="kara-row">📍 44 Cao Triều Phát, Tân Phong, Quận 7 (푸미흥 뉴라이프 인근) <a class="kara-mapbtn" href="https://maps.google.com/?q=44+Cao+Trieu+Phat+Quan+7+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 16:00 ~ 02:00</div>
             <table class="kara-pt">
-              <tr><td>맥주/소주 세트</td><td>4,500,000 VND</td></tr>
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>맥주·소주 세트</td><td>4,500,000 VND</td></tr>
               <tr><td>양주 세트</td><td>4,500,000 VND~</td></tr>
               <tr><td>마담 팁</td><td>500,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>300,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 7군 거주자 인기 · 뉴라이프 인근</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
         <div class="kara-card">
           <div class="kara-thumb" style="cursor:pointer;" onclick="this.parentElement.querySelector('.kara-details').classList.toggle('open')"><img src="https://xn--9f2bo5gqdn09e85i.com/wp-content/uploads/2024/07/게시글-템플릿뜨밤-복사-6.webp" alt="원투 가라오케" loading="lazy"></div>
           <div class="kara-head" onclick="this.nextElementSibling.classList.toggle('open')">
-            <span class="kara-name">원투 가라오케</span><span class="badge-hain">한인</span>
+            <span class="kara-name">원투 가라오케 (탄탄실장)</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 104 Ký Con, 1군 <a href="https://maps.google.com/?q=104+Ký+Con%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:00 ~ 손님 가실 때까지</div>
+            <div class="kara-desc">호치민 1군 위치. 탄탄실장의 "탄탄"한 케어가 특징. 한일실장 상주. 1인~15인 수용 룸. 평균 50명 이상 출근. 365일 24시간 문의 가능. 뜨밤회원 단독케어.</div>
+            <div class="kara-row">📍 104 Đ. Ký Con, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=104+Ky+Con+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:00 ~ 손님 가실 때까지</div>
             <table class="kara-pt">
-              <tr><td>맥주/소주 세트</td><td>4,500,000 VND</td></tr>
+              <tr><th colspan="2">💰 가격표</th></tr>
+              <tr><td>맥주·소주 세트</td><td>4,500,000 VND</td></tr>
+              <tr><td>양주 세트</td><td>4,500,000 VND</td></tr>
               <tr><td>마담 팁</td><td>500,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>300,000 VND</td></tr>
-              <tr><td>아가씨 팁 (3h)</td><td>500,000 VND</td></tr>
+              <tr><td>아가씨 팁 (3시간/인)</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-promo">🎁 탄탄실장 예약 시 소주1병+맥주6캔+숙취해소제 무료</div>
-            <div class="kara-tip">ℹ️ 부가세 10% · 탄탄실장 상주</div>
-            <div class="kara-contact">📞 카톡 tantan0827 · 텔레 @tantan0827</div>
+            <div class="kara-vat">※ 주대 부가세 10% (팁 제외)</div>
+            <div class="kara-promo">🎁 탄탄실장 예약 시 소주1병 또는 맥주6캔 + 숙취해소제 + 남성보조제 무료 (탄탄실장 예약 시에만 적용)</div>
+            <div class="kara-contact">📞 카톡 tantan0827 · 텔레 @tantan0827 · 잘로 094-179-8709</div>
           </div>
         </div>
 
@@ -1377,13 +1388,14 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">넘버원 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 21 Thái Văn Lung, 1군 <a href="https://maps.google.com/?q=21+Thái+Văn+Lung%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:30 ~ 03:00</div>
+            <div class="kara-desc">최신식 시설과 깔끔한 환경. 평일·주말 출근률 괜찮은 편. 관광객뿐 아니라 주재원 단골층 다수. 가라오케 처음인 분들에게도 추천. ▶ 25년 4월부터 기본세트 450만동으로 인상.</div>
+            <div class="kara-row">📍 21 Thái Văn Lung, Bến Nghé, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=21+Thai+Van+Lung+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:30 ~ 03:00</div>
             <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
               <tr><td>기본 1세트</td><td>4,500,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 최신식 시설 · 주재원 단골층 많음</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
@@ -1393,19 +1405,21 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">오딧세이 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 13 Yersin, 1군 (부이비엔 인근) <a href="https://maps.google.com/?q=13+Yersin%2C+1군+(부이비엔+인근)+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:00 ~ 02:00 (마지막 초이스 23:00)</div>
+            <div class="kara-desc">호치민에서 시설로는 손꼽히는 한인 가라오케. 부이비엔 인근 위치로 접근성 최상. 사장님께서 깐깐하게 관리하여 수질 괜찮은 편이고 출근률도 좋음. 마지막 초이스 23:00. 뜨밤회원 다수 케어.</div>
+            <div class="kara-row">📍 13 Đ. Yersin, Phường Cầu Ông Lãnh, Quận 1 (부이비엔 인근) <a class="kara-mapbtn" href="https://maps.google.com/?q=13+Yersin+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:00 ~ 02:00 (마지막 초이스 23:00)</div>
             <table class="kara-pt">
-              <tr><td>1인 세트 (평일)</td><td>3,000,000 VND</td></tr>
+              <tr><th colspan="2">💰 인원별 세트 가격</th></tr>
+              <tr><td>1인 세트 (소주·맥주, 평일만)</td><td>3,000,000 VND</td></tr>
               <tr><td>2~3인 1세트</td><td>4,500,000 VND</td></tr>
-              <tr><td>4인 1.5세트</td><td>6,000,000 VND</td></tr>
+              <tr><td>4인 1.5세트 / 8인 세트×2</td><td>6,000,000 VND</td></tr>
               <tr><td>5~7인 2세트</td><td>9,000,000 VND</td></tr>
-              <tr><td>마담 팁 (룸당)</td><td>500,000 VND</td></tr>
-              <tr><td>웨이터 팁 (룸당)</td><td>300,000 VND</td></tr>
-              <tr><td>아가씨 팁 (3h)</td><td>500,000 VND</td></tr>
+              <tr><td>마담 팁 (룸당 고정)</td><td>500,000 VND</td></tr>
+              <tr><td>웨이터 팁 (룸당 고정)</td><td>300,000 VND</td></tr>
+              <tr><td>아가씨 팁 (3시간/인)</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-promo">🎁 뜨밤 예약 시 소주1병+맥주5캔 무료</div>
-            <div class="kara-tip">ℹ️ 부가세 10% · 시설 최상급</div>
+            <div class="kara-vat">※ 부가세 10% (주대만) · 예) 2인 기본세트 450만 + 10% = 495만동</div>
+            <div class="kara-promo">🎁 뜨밤 예약 시 기본세트 주문 시 소주1병 + 맥주5캔 무료</div>
             <div class="kara-contact">📞 카톡 hcm9535 · 텔레 @hcm9137 · 채널 핫한밤</div>
           </div>
         </div>
@@ -1416,15 +1430,16 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">더원 가라오케 (The One)</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 26B Nguyễn Thái Bình, 1군 <a href="https://maps.google.com/?q=26B+Nguyễn+Thái+Bình%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:30 ~ 03:00</div>
+            <div class="kara-desc">비교적 최근 오픈한 가라오케. 최신식 시설과 깔끔한 환경. 출근률 괜찮은 편이라 초이스 불편함 없음. 주대 및 시스템은 다른 한인 가라오케와 동일.</div>
+            <div class="kara-row">📍 26B Đ. Nguyễn Thái Bình, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=26B+Nguyen+Thai+Binh+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:30 ~ 03:00</div>
             <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
               <tr><td>기본 1세트</td><td>4,500,000 VND</td></tr>
-              <tr><td>마담/웨이터 팁</td><td>800,000 VND</td></tr>
+              <tr><td>마담 · 웨이터 팁</td><td>800,000 VND</td></tr>
               <tr><td>테이블 팁</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 최신식 시설 · 최근 오픈</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
@@ -1434,16 +1449,18 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">102 가라오케</span><span class="badge-hain">한인</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 102 Lê Lai, 1군 (벤탄시장 그랩 3분) <a href="https://maps.google.com/?q=102+Lê+Lai%2C+1군+(벤탄시장+그랩+3분)+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 17:00 ~ 02:00</div>
+            <div class="kara-desc">한인 사장님 운영. 벤탄시장에서 그랩 3분, 부이비엔 근처. 한국 영업 경력 길어 손님 케어 확실. 나실장님 케어로 뜨밤장이 적극 추천하는 검증된 곳. 사고 없는 곳. 평일 60명+, 주말 더 많음.</div>
+            <div class="kara-row">📍 102 Đ. Lê Lai, Phường Phạm Ngũ Lão, Quận 1 (벤탄시장 그랩 3분) <a class="kara-mapbtn" href="https://maps.google.com/?q=102+Le+Lai+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 17:00 ~ 02:00</div>
             <table class="kara-pt">
+              <tr><th colspan="2">💰 가격표</th></tr>
               <tr><td>기본 1세트</td><td>4,500,000 VND</td></tr>
               <tr><td>마담 팁</td><td>500,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>300,000 VND</td></tr>
-              <tr><td>아가씨 팁 (3h)</td><td>500,000 VND</td></tr>
+              <tr><td>아가씨 팁 (3시간/인)</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-promo">🎁 뜨밤 예약 시 소주1병+맥주5캔+계란말이 무료</div>
-            <div class="kara-tip">ℹ️ 평일 출근 60명+ · 나실장 상주</div>
+            <div class="kara-vat">※ 주대 부가세 10% (팁 제외)</div>
+            <div class="kara-promo">🎁 뜨밤 예약 시 소주1병 또는 맥주5캔 + 계란말이 무료 (뜨밤 전용)</div>
             <div class="kara-contact">📞 카톡 hcm9535 · 텔레 @hcm9137 · 채널 핫한밤</div>
           </div>
         </div>
@@ -1454,16 +1471,19 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">로컬 1127 / 93</span><span class="badge-local">로컬</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 1127 Trần Hưng Đạo, 5군 / 93 An Dương Vương, 5군 <a href="https://maps.google.com/?q=1127+Trần+Hưng+Đạo%2C+5군+/+93+An+Dương+Vương%2C+5군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 14:00 ~ (17:00 이후 출근 많음)</div>
+            <div class="kara-desc">5군 위치 로컬 가라오케 2곳. 부이비엔에서 차로 15분. 한일실장 상주로 내상 걱정 없음. 메뚜기 없고 1룸 1케어 원칙. 한국식 주대 시스템으로 가성비 있게 로컬 가라오케 이용 가능. 망사홀복 기본 착용. 오후 6~7시때 물이 가장 좋음. 평일 100명 / 주말 150명 출근.</div>
+            <div class="kara-row">📍 1127 Đ. Trần Hưng Đạo, Phường 5, Quận 5 <a class="kara-mapbtn" href="https://maps.google.com/?q=1127+Tran+Hung+Dao+Quan+5+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">📍 93 Đ. An Dương Vương, Phường 7, Quận 5 <a class="kara-mapbtn" href="https://maps.google.com/?q=93+An+Duong+Vuong+Quan+5+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 14:00 ~ (17:00 이후 출근 본격 시작, 6~7시 최성수)</div>
             <table class="kara-pt">
-              <tr><td>맥주/소주 세트 (4인↓)</td><td>4,500,000 VND</td></tr>
+              <tr><th colspan="2">💰 가격표 (4인 이하 기준)</th></tr>
+              <tr><td>맥주·소주 세트</td><td>4,500,000 VND</td></tr>
               <tr><td>마담 팁</td><td>1,000,000 VND</td></tr>
               <tr><td>웨이터 팁</td><td>600,000 VND</td></tr>
-              <tr><td>꽁팁 (4h)</td><td>1,000,000 VND</td></tr>
+              <tr><td>꽁팁 (4시간 기준)</td><td>1,000,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 한일실장 상주 · 1룸 1케어 · 평일 100명 주말 150명+</div>
-            <div class="kara-contact">📞 카톡 hcm9535 · 채널 핫한밤</div>
+            <div class="kara-vat">※ 부가세 10% 별도</div>
+            <div class="kara-contact">📞 카톡 hcm9535 또는 hcm9137 · 채널 핫한밤</div>
           </div>
         </div>
 
@@ -1478,19 +1498,25 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">보스 가라오케</span><span class="badge-local">로컬</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 27-29-31 số 9A, Bình Chánh <a href="https://maps.google.com/?q=27-29-31+số+9A%2C+Bình+Chánh+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 12:00 ~ 02:00</div>
+            <div class="kara-desc">한국인에게 그나마 알려진 로컬 가라오케. 한인 가라오케보다 비용이 많이 들지만 수질은 좋음. 낮부터 영업. 룸 비용 + 주류비 + 팁 별도 청구 방식.</div>
+            <div class="kara-row">📍 27-29-31 Đ. số 9A, Bình Hưng, Bình Chánh <a class="kara-mapbtn" href="https://maps.google.com/?q=27+So+9A+Binh+Hung+Binh+Chanh+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 12:00 ~ 02:00</div>
             <table class="kara-pt">
-              <tr><td>룸 (Small)</td><td>600,000 VND</td></tr>
-              <tr><td>룸 (Middle)</td><td>800,000 VND</td></tr>
-              <tr><td>룸 (Big)</td><td>1,000,000 VND</td></tr>
+              <tr><th colspan="2">🏠 룸 비용</th></tr>
+              <tr><td>SMALL ROOM</td><td>600,000 VND</td></tr>
+              <tr><td>MIDDLE ROOM</td><td>800,000 VND</td></tr>
+              <tr><td>BIG ROOM</td><td>1,000,000 VND</td></tr>
+              <tr><th colspan="2">🍺 주류</th></tr>
               <tr><td>맥주 1병</td><td>60,000 VND</td></tr>
-              <tr><td>양주</td><td>100만~800만 VND</td></tr>
+              <tr><td>과일 안주류</td><td>450,000 VND</td></tr>
+              <tr><td>마른 안주류</td><td>30,000~400,000 VND</td></tr>
+              <tr><td>양주</td><td>1,000,000~8,000,000 VND</td></tr>
+              <tr><th colspan="2">👤 팁</th></tr>
               <tr><td>마담 팁</td><td>1,000,000 VND</td></tr>
+              <tr><td>웨이터 팁</td><td>500,000 VND</td></tr>
               <tr><td>아가씨 팁</td><td>1,000,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 로컬방식 · 한국인에게 알려진 로컬 · 수질 우수</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
@@ -1500,13 +1526,14 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">드래곤 K 가라오케</span><span class="badge-local">로컬</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 466 Trần Hưng Đạo B, 5군 <a href="https://maps.google.com/?q=466+Trần+Hưng+Đạo+B%2C+5군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 평일 13:30~24:00 / 토 13:30~03:30</div>
+            <div class="kara-desc">5군 위치 규모 있는 로컬 가라오케. 주로 현지인·중국인 이용. 한인 가라오케보다 비용 많이 지출되지만 수질은 로컬답게 최상급. 정해진 세트 없이 마신 만큼 계산하는 방식. 처음 방문·외국인 상대로 계산서에 더 올리는 경우 있으니 중간 체크 필수.</div>
+            <div class="kara-row">📍 466 Trần Hưng Đạo B, Phường 14, Quận 5 <a class="kara-mapbtn" href="https://maps.google.com/?q=466+Tran+Hung+Dao+B+Quan+5+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 월~금·일 13:30 ~ 24:00 / 토 13:30 ~ 03:30</div>
             <table class="kara-pt">
-              <tr><td>로컬 방식</td><td>마신 만큼 계산</td></tr>
+              <tr><td>계산 방식</td><td>마신 만큼 청구</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 현지인·중국인 주 이용 · 최상급 수질 · 계산서 중간 체크 필수</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-warn">⚠️ 계산서 중간 체크 필수 — 외국인 대상 추가 청구 사례 있음</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
@@ -1516,14 +1543,15 @@ section:nth-of-type(odd) { background: transparent; }
             <span class="kara-name">127 가라오케 (BB)</span><span class="badge-local">로컬</span>
           </div>
           <div class="kara-details">
-            <div class="kara-row">📍 127 Nguyễn Thái Bình, 1군 <a href="https://maps.google.com/?q=127+Nguyễn+Thái+Bình%2C+1군+Ho+Chi+Minh+Vietnam" target="_blank" style="font-size:0.72rem;color:#1565C0;text-decoration:none;background:#E3F2FD;padding:1px 6px;border-radius:99px;white-space:nowrap;">🗺️ 지도</a></div>
-            <div class="kara-row">⏰ 14:00 ~ 01:00</div>
+            <div class="kara-desc">1군 위치 베트남 로컬 방식 가라오케. 영어·한국어 거의 불가. 낮부터 영업하는 장점. 수질은 로컬답게 좋은 편. 정해진 세트 없이 먹고 마신 대로 청구. 물티슈·물·음료 등 하나하나 전부 계산서에 찍히므로 꼼꼼히 확인 필요.</div>
+            <div class="kara-row">📍 127 Đ. Nguyễn Thái Bình, Phường Nguyễn Thái Bình, Quận 1 <a class="kara-mapbtn" href="https://maps.google.com/?q=127+Nguyen+Thai+Binh+Quan+1+Ho+Chi+Minh" target="_blank">🗺️ 지도</a></div>
+            <div class="kara-row">⏰ 매일 14:00 ~ 01:00</div>
             <table class="kara-pt">
-              <tr><td>로컬 방식</td><td>마신 만큼 계산</td></tr>
+              <tr><td>계산 방식</td><td>마신 만큼 청구</td></tr>
               <tr><td>섹시댄스 옵션</td><td>500,000 VND</td></tr>
             </table>
-            <div class="kara-tip">ℹ️ 물티슈·음료 등 하나하나 청구 주의 · 영어/한국어 거의 불가</div>
-            <div class="kara-contact">📞 카톡 hcm9137 · 채널 뜨밤</div>
+            <div class="kara-warn">⚠️ 물티슈·음료 등 하나하나 청구 · 중간 계산서 체크 필수 · 호구 주의</div>
+            <div class="kara-contact">📞 카톡 hcm9137 또는 hcm9535 · 채널 뜨밤</div>
           </div>
         </div>
 
